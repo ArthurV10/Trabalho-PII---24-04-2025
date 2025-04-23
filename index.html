@@ -18,11 +18,11 @@
 			Seu navegador não suporta vídeos.
 		</video>
 
-		<header class="cabeçalho">
+		<header class="cabeçalho" id="cabeçalho_blog">
 			<img src="assets/logo.png" alt="blog ads">
 		</header>
 
-		<main>
+		<main id="principal">
 			<div class="afasta-esquerda">
 				<h2 id="bloco-titulo">Sobre o IFPI</h2>
 				<div class="caixa-transparente">
@@ -67,12 +67,41 @@
 				</div>
 			</div>
 			<div class="caixa-botão">
-                <button class="bloco-botão" onclick="window.location.href='https://www.youtube.com/watch?v=Av5YeL-RrVA'">Postagens</button>
-                <button class="bloco-botão" onclick="window.location.href='https://www.youtube.com/watch?v=nA8wHQvHPJU'" >Autores</button>
-                <button class="bloco-botão" onclick="window.location.href='https://www.youtube.com/watch?v=Yq7Yy8H5J-8'">Links</button>
+                <button class="bloco-botão" id="botao_postagens">Postagens</button>
+                <button class="bloco-botão" id="botao_autores">Autores</button>
+                <button class="bloco-botão" onclick="window.location.href='https://www.youtube.com/watch?v=Yq7Yy8H5J-8'" id="botao_links">Links</button>
             </div>
+
+			<div class="Postagens">
+				<img id="sale" class="transicao-subir" src="https://i.pinimg.com/736x/6d/ef/7f/6def7fa38720c0da12d40969b10aff9c.jpg" alt="sale balatrito">
+			</div>
+
+			<div class="Autores">
+				
+			</div>
+			
+			<div class="Links">
+				
+			</div>
+
 			</main>
 
 		<footer></footer>
+
+		<div id="tela-autores" class="tela-sobreposta">
+			<img src="https://i.pinimg.com/736x/6d/ef/7f/6def7fa38720c0da12d40969b10aff9c.jpg" alt="sale balatrito">
+			<button class="bloco-botão" onclick="fecharTela()">Fechar</button>
+		</div>
+		<script>
+			document.querySelector('#botao_autores').addEventListener('click', () => {
+				const tela = document.getElementById('tela-autores');
+				tela.style.display = 'block'; // Mostra a tela com animação
+			});
+
+			function fecharTela() {
+			const tela = document.getElementById('tela-autores');
+			tela.style.display = 'none';
+			}
+		</script>
 	</body>
 </html>
