@@ -69,7 +69,7 @@
 			<div class="caixa-botão">
                 <button class="bloco-botão" id="botao_postagens">Postagens</button>
                 <button class="bloco-botão" id="botao_autores">Autores</button>
-                <button class="bloco-botão" onclick="window.location.href='https://www.youtube.com/watch?v=Yq7Yy8H5J-8'" id="botao_links">Links</button>
+                <button class="bloco-botão" target="_blank" onclick="window.location.href='https://www.youtube.com/watch?v=Wu3Y_v8JeE8'" id="botao_links">Links</button>
             </div>
 
 			<div class="Postagens">
@@ -89,19 +89,29 @@
 		<footer></footer>
 
 		<div id="tela-autores" class="tela-sobreposta">
-			<img src="https://i.pinimg.com/736x/6d/ef/7f/6def7fa38720c0da12d40969b10aff9c.jpg" alt="sale balatrito">
+			<img id="sale" src="https://i.pinimg.com/736x/6d/ef/7f/6def7fa38720c0da12d40969b10aff9c.jpg" alt="sale balatrito">
+			<h1>Dale balatrito</h1>
 			<button class="bloco-botão" onclick="fecharTela()">Fechar</button>
 		</div>
 		<script>
 			document.querySelector('#botao_autores').addEventListener('click', () => {
 				const tela = document.getElementById('tela-autores');
 				tela.style.display = 'block'; // Mostra a tela com animação
+				const tela_principal = document.getElementById('principal');
+				tela_principal.style.display = 'none'
+				const cabeçalho_blog = document.getElementById('cabeçalho_blog');
+				cabeçalho_blog.style.display = 'none'
 			});
 
 			function fecharTela() {
 			const tela = document.getElementById('tela-autores');
 			tela.style.display = 'none';
+			const tela_principal = document.getElementById('principal');
+			tela_principal.style.display = 'flex'
+			const cabeçalho_blog = document.getElementById('cabeçalho_blog');
+			cabeçalho_blog.style.display = 'block'
 			}
+			
 		</script>
 	</body>
 </html>
