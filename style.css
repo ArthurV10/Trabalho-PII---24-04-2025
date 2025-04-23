@@ -6,6 +6,7 @@
 body{
     font-family: 'Balatro', sans-serif;
     margin: auto;
+    cursor: url('assets/Hand3.png'), auto;
 }
 
 main {
@@ -23,7 +24,7 @@ main {
     text-transform: capitalize;
     text-align: center;
     color: rgb(250, 250, 250); /* Melhor contraste com o vídeo */
-    margin: 0px;
+    margin-bottom: 0rem;
     padding: 0rem;
     text-shadow: 2px 2px 5px rgb(134, 91, 0); /* Sombra para dar contraste no texto */
 }
@@ -62,20 +63,24 @@ h1 {
 }
 
 .bloco-botão{
-    width: 10rem; /* ajuste para o tamanho da sua imagem */
-    height: 5rem; /* ajuste para o tamanho da sua imagem */
-    background-image: url('assets/bloco-novo.png'); /* substitua pelo caminho certo */
-    background-position: left;
-    background-size: 100% 100%; /* estica a imagem proporcionalmente */
+    width: 200px;
+    height: 80px;
+    margin: 50px auto;
+    background-image: url('assets/bloco-novo.png');
+    background-size: 100% 100%;
     background-repeat: no-repeat;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     font-family: 'Balatro', monospace;
     font-size: 1.5rem;
     color: #29012b;
     text-shadow: 1px 1px 1px #ffaa00;
-    margin-top: 30px;
+    border: none;
+    background-color: transparent;
+    border-radius: 1rem;
+    cursor: url('assets/Hand2.png'), auto;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .paragrafo-recuado {
@@ -107,12 +112,11 @@ h1 {
 .caixa-botão{
     display: flex;
     gap:15rem;
-    cursor: pointer;
 }
+
 
 button {
     border: none; /* Sem bordas */
-    cursor: pointer; /* Ponteiro ao passar o mouse */
     transition: box-shadow 0.3s ease, transform 0.3s ease; /* Transição suave */
     background:none;
     border: none;
@@ -121,5 +125,20 @@ button {
 
 button:hover {
     transform: scale(1.1); /* Aumentar levemente o botão */
-    box-shadow: 0 0 15px 5px white; /* Efeito de luz ao redor */
+    box-shadow: 0 0 15px 5px rgb(240, 181, 55); /* Efeito de luz ao redor */
 }
+
+button, button *{
+    cursor: url('assets/Hand2.png'), auto;
+}
+
+.bloco-botao:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px 5px white;
+  }
+
+  /* força o cursor até dentro dos filhos */
+  .bloco-botao * {
+    pointer-events: none;
+  }
+
