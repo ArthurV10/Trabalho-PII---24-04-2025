@@ -73,8 +73,8 @@
             </div>
 		</main>
 
-		<div id="tela-postagens" class="tela-sobreposta">
-			<h1>Postagens</h1>
+		<div id="tela-postagens">
+			<div id="conteudo-postagens"></div>
 			<button id="fechar-postagens" class="bloco-botão" onclick="fecharTela('postagens')">Fechar</button>
 		</div>
 		
@@ -124,6 +124,40 @@
 				});
 			}
 
+			function mostrarTelaPostagens(telaID){
+				const tela = document.getElementById('tela-' + telaId);
+				const botaoFechar = document.getElementById('fechar-' + telaId);
+				const tela_principal = document.getElementById('principal');
+				const cabeçalho_blog = document.getElementById('cabeçalho_blog');
+
+				// Desativa o botão de fechar durante a animação
+				if (botaoFechar) botaoFechar.disabled = true;
+
+				// Mostra a tela e inicia a animação
+				tela.style.display = 'block';
+				tela.style.animation = 'subirTela 0.4s ease-out forwards';
+
+				// Oculta suavemente os elementos de fundo
+				tela_principal.style.transition = 'opacity 0.4s';
+				tela_principal.style.opacity = '0';
+				cabeçalho_blog.style.transition = 'opacity 0.4s';
+				cabeçalho_blog.style.opacity = '0';
+
+				setTimeout(() => {
+					tela_principal.style.display = 'none';
+					cabeçalho_blog.style.display = 'none';
+				}, 400); // tempo de transição do fundo
+
+				// Aguarda o término da animação de subida
+				tela.addEventListener('animationend', function handleAnimAbrir() {
+					// Reativa o botão de fechar após a animação
+					if (botaoFechar) botaoFechar.disabled = false;
+
+					// Remove o listener para evitar acúmulo
+					tela.removeEventListener('animationend', handleAnimAbrir);
+				});
+
+			}
 
 			// Função para fechar a tela sobreposta
 			function fecharTela(telaId) {
@@ -181,6 +215,18 @@
 				})
 				.catch(error => console.error('Erro ao carregar os autores:', error));
 			});
+			
+			document.querySelector('#botao_postagens').addEventListener('click', () => {
+			abrirTela('postagens');
+			const conteudoPostagens = document.getElementById('conteudo-postagens');
+
+			fetch('postagens-pages.html')
+				.then(response => response.text())
+				.then(html => {
+					conteudoPostagens.innerHTML = html;
+				})
+				.catch(error => console.error('Erro ao carregar postagens:', error));
+		});
 			
 		</script>
 	</body>
