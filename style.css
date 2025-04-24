@@ -37,7 +37,8 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* background-color: rgba(0, 0, 0, 0.5); Fundo preto com opacidade */
+    opacity: 1;
+    transition: opacity 0.4s ease;
 }
 
 
