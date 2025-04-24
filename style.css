@@ -107,6 +107,13 @@ h1 {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+#botão-voltar {
+   margin-top: 20rem; 
+   background-color: transparent;
+   border-radius: 1rem;
+   color: #29012b;
+}
+
 .paragrafo-recuado {
     text-indent: 30px;
     margin-left: 30px;
@@ -156,16 +163,6 @@ button, button *{
     cursor: url('assets/Hand2.png'), auto;
 }
 
-.bloco-botao:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 15px 5px white;
-  }
-
-  /* força o cursor até dentro dos filhos */
-  .bloco-botao * {
-    pointer-events: none;
-  }
-
 .Postagens {
 	display: none;
 }
@@ -197,20 +194,23 @@ button, button *{
     height: 30rem;
 }
 
-#background-links {
-    position:static;
+#principal-links {
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    margin: 0;
-    padding: 0;
-    background-image: url('assets/fundo-shop-balatro.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;  /* Impede qualquer rolagem no conteúdo específico */
+}
+
+#background-links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100vw;
+    min-height: 100vh;
+    object-fit: cover;
     z-index: -1;
-    overflow: hidden;  /* ❌ impede qualquer rolagem */
 }
 
 
@@ -464,7 +464,7 @@ button, button *{
 }
 .sidebar {
     width: 20rem;
-    height: 55rem;
+    height: 70rem;
     background-color: #444444;
     border-left: 0.3rem solid rgb(175, 61, 61);
     border-right: 0.3rem solid rgb(175, 61, 61);
@@ -472,9 +472,10 @@ button, button *{
     margin-left: 3rem;
 
     display: flex;              /* ativa flexbox */
-    justify-content: center;    /* centraliza na horizontal */
-    align-items: start;         /* alinha no topo verticalmente */
-    padding-top: 4rem;          /* espaçamento superior para afastar do topo */
+    flex-direction: column;     /* organiza os elementos na vertical */
+    justify-content: flex-start; /* alinha os itens no topo */
+    align-items: center;         /* centraliza na horizontal */
+    padding-top: 12rem;           /* redução no espaçamento superior */
 }
 
 .links-box {
@@ -490,10 +491,11 @@ button, button *{
     padding-top: 0.5rem;
 }
 
+
+
 .links-image {
     width: 90%;
     height: 80%;
-    border-radius: 2.2rem;
     transition: box-shadow 0.3s ease;
 }
 
@@ -537,6 +539,12 @@ button, button *{
     color: white;
 }
 
+#ajustar-altura-deck :hover{
+    cursor: url(assets/Hand2.png), auto;
+    box-shadow: 0rem 0rem 0rem 0.4rem rgb(255, 99, 88);
+    border-radius: 0.7rem;
+}
+
 #ajustar-numero {
     margin-left: 6rem;
 }
@@ -545,14 +553,62 @@ button, button *{
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 colunas */
     grid-template-rows: repeat(2, auto);   /* 2 linhas */
-    gap: 1rem; /* Espaço entre as cartas */
-    justify-items: center; /* Centraliza horizontalmente cada carta */
-    align-items: center;   /* Centraliza verticalmente cada carta */
+    gap: 1rem;
+    justify-items: center;
+    align-items: center;
     padding: 5rem;
+    transition: box-shadow 2s ease;
+    perspective: 1000px;
 }
 
-.cartas-links img{
+.cartas-links img {
     width: 10rem;
     height: 12rem;
     margin: 0.5rem;
+    cursor: url(assets/Hand2.png), auto; /* cursor aqui, direto na imagem */
 }
+
+.cartas-links img:hover {
+    filter: drop-shadow(0 0 1.5rem rgba(1, 184, 190, 0.8));
+}
+
+#tela-preta {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: black;
+	opacity: 0;
+	transition: opacity 0.5s;
+	pointer-events: none;
+	z-index: 1000;
+}
+
+#tela-preta.ativo {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+#tela-links-carregada {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-height: 100vh;
+	background: white;
+	z-index: 1001;
+	overflow-y: auto;
+	padding: 2rem;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	box-sizing: border-box;
+}
+
+/* Estilo interno do conteúdo carregado */
+#tela-links-carregada .container-pagina {
+	width: 100%;
+	max-width: 1000px;
+}
+  
