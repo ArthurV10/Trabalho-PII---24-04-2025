@@ -1,10 +1,10 @@
 @keyframes subirTela {
     from {
-        transform: translate(50%, 0%); /* começa mais pra baixo */
+        transform: translate(-50%, 50%); /* começa mais pra baixo */
         opacity: 0;
     }
     to {
-        transform: translate(0%, 0%); /*termina centralizado */
+        transform: translate(-50%, -50%); /*termina centralizado */
         opacity: 1;
     }
 }
@@ -179,16 +179,16 @@ button, button *{
     top: 50%;
     left: 50%;
     transform: translate(-50%, 50%); /* começa abaixo do centro */
-    width: 80vw;
+    width: 60vw;
     max-width: 800px;
-    height: 70vh;
-    background-color: rgba(10, 10, 10, 0.95);
+    height: 80vh;
+    background-color: rgba(32, 31, 31, 0.95);
     z-index: 100;
     animation: subirTela 0.4s ease-out forwards;
     display: none;
     color: white;
     padding: 2rem;
-    overflow-y: auto;
+    overflow-y: none;
     border-radius: 1rem;
 }
 
@@ -278,11 +278,11 @@ button, button *{
   }
 
 .autor-1 {
-    background-image: url('caminho-da-imagem-1.jpg');
+    background-image: url('assets/jokerArthur.jpg');
 }
 
 .autor-2 {
-    background-image: url('caminho-da-imagem-2.jpg');
+    background-image: url('assets/jokerIglesio.png');
 }
 
 .autor-3 {
@@ -461,7 +461,7 @@ button, button *{
     text-align: justify;
     font-size: 1rem;
     line-height: 1.6;
-  
+}
 .sidebar {
     width: 20rem;
     height: 55rem;
