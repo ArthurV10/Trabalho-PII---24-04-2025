@@ -205,3 +205,134 @@ button, button *{
     background-position: center;
     background-repeat: no-repeat;
 }
+
+/* Estilos para a tela de autores no estilo Balatro */
+#tela-autores {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.container-cartas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px;
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+}
+
+.carta-autor {
+    width: 200px; /* Largura da carta */
+    height: 300px; /* Altura da carta */
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.autor-1 {
+    background-image: url('caminho-da-imagem-1.jpg');
+}
+
+.autor-2 {
+    background-image: url('caminho-da-imagem-2.jpg');
+}
+
+.autor-3 {
+    background-image: url('assets/jokerNicolas.png');
+}
+
+.conteudo-carta {
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro transparente */
+    color: white;
+    width: 100%;
+    padding: 10px;
+    transform: translateY(100%); /* Começa fora da visão */
+    transition: transform 0.4s ease; /* Suaviza a animação */
+}
+
+.carta-autor:hover .conteudo-carta {
+    transform: translateY(0); /* Mostra as informações ao passar o mouse */
+}
+
+.foto-autor {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+    border-bottom: 2px solid #ffd700;
+}
+
+.nome-autor {
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    color: #ffd700;
+    font-size: 1.1em;
+}
+
+.info-autor {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 15px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.carta-autor:hover .info-autor {
+    transform: translateY(0);
+}
+
+.info-autor p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+.titulo-autores {
+    color: #ffd700;
+    font-size: 2.5em;
+    text-align: center;
+    margin-top: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.redes-sociais {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.icone-rede {
+    width: 32px;
+    height: 32px;
+    transition: all 0.2s ease;
+    filter: brightness(0.8);
+}
+
+.icone-rede:hover {
+    transform: scale(1.2);
+    filter: drop-shadow(0px 0px 2px #f0c246);
+}
+
+.icone-rede img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
