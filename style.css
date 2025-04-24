@@ -360,26 +360,28 @@ button, button *{
     padding-top: 4rem;          /* espaçamento superior para afastar do topo */
 }
 
-.shop-box {
+.links-box {
     width: 18.7rem;
     height: 15rem;
     background-color: #3b3b3b;
     border: 0.5rem solid rgb(175, 61, 61);
     border-radius: 1rem;
     box-sizing: border-box;
-    background-image: url(assets/Links_Logo.png), auto;
-
     display: flex;              /* ativa flexbox */
     justify-content: center;    /* centraliza na horizontal */
     align-items: center;        /* centraliza na vertical */
     padding-top: 0.5rem;
 }
 
-.shop-image {
-    width: 120%;
-    height: 120%;
-    border-radius: 0.5rem;
-    margin-left: 1rem;
+.links-image {
+    width: 90%;
+    height: 80%;
+    border-radius: 2.2rem;
+    transition: box-shadow 0.3s ease;
+}
+
+.links-image:hover{
+    filter: drop-shadow(0 0 1.5rem rgba(243, 186, 79, 0.8));
 }
 
 .local-links {
@@ -387,11 +389,23 @@ button, button *{
     height: 45rem;
     background-color: #444444;
     border: 0.3rem solid rgb(175, 61, 61);
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     box-sizing: border-box;
-    margin-top: 30rem;
+    margin-top: 20rem;
     display: flex;
-    flex-direction: column;     /* centraliza conteúdo horizontalmente */  
+    flex-direction: column;  
+    justify-content: center;    /* centraliza na horizontal */
+    align-items: center;   /* centraliza conteúdo horizontalmente */  
+}
+
+#local-links-interno{
+    width:58rem;
+    height: 36rem;
+    background-color: #252525;
+    border-radius: 1rem;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 7rem;
 }
 
 .container {
@@ -399,4 +413,29 @@ button, button *{
     align-items: center; /* centraliza verticalmente os filhos */
     height: 100vh;        /* ocupa a altura total da janela */
     gap: 5rem;
+}
+
+#ajustar-altura-deck {
+    margin-top: 38rem;
+    color: white;
+}
+
+#ajustar-numero {
+    margin-left: 6rem;
+}
+
+.cartas-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas */
+    grid-template-rows: repeat(2, auto);   /* 2 linhas */
+    gap: 1rem; /* Espaço entre as cartas */
+    justify-items: center; /* Centraliza horizontalmente cada carta */
+    align-items: center;   /* Centraliza verticalmente cada carta */
+    padding: 5rem;
+}
+
+.cartas-links img{
+    width: 10rem;
+    height: 12rem;
+    margin: 0.5rem;
 }
