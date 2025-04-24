@@ -79,9 +79,9 @@
 		</div>
 		
 		<div id="tela-autores" class="tela-sobreposta">
-			<img id="sale" src="https://i.pinimg.com/736x/6d/ef/7f/6def7fa38720c0da12d40969b10aff9c.jpg" alt="sale balatrito">
-			<h1>Dale balatrito</h1>
-			<button id="fechar-autores"  class="bloco-botão" onclick="fecharTela('autores')">Fechar</button>
+			<h1 class="titulo-autores">Autores</h1>
+			<div id="conteudo-autores"></div> <!-- Aqui o conteúdo será inserido -->
+			<button id="fechar-autores" class="bloco-botão" onclick="fecharTela('autores')">Fechar</button>
 		</div>
 
 		<div id="tela-links" class="tela-sobreposta">
@@ -167,6 +167,19 @@
 
 			document.querySelector('#botao_links').addEventListener('click', () => {
 				abrirTela('links');
+			});
+			
+			document.querySelector('#botao_autores').addEventListener('click', () => {
+			abrirTela('autores');
+			const conteudoAutores = document.getElementById('conteudo-autores');
+
+			// Carrega o conteúdo do arquivo autores.html
+			fetch('authors.html')
+				.then(response => response.text())
+				.then(html => {
+					conteudoAutores.innerHTML = html;
+				})
+				.catch(error => console.error('Erro ao carregar os autores:', error));
 			});
 			
 		</script>
