@@ -325,7 +325,7 @@ button, button *{
     left: 0;
     right: 0;
     background: rgba(0,0,0,0.8);
-    color: white;
+    color: rgb(255, 123, 0);
     padding: 15px;
     transform: translateY(100%);
     transition: transform 0.3s ease;
@@ -343,6 +343,16 @@ button, button *{
     margin: 5px 0;
     font-size: 0.9em;
 }
+
+.carta-autor .info-autor {
+    color: white;
+  }
+  
+.carta-autor .info-autor strong {
+    color: inherit; /* para manter a cor padrão ou */
+    color: #ff9900;  /* ou uma cor diferente, tipo amarelo ouro */
+}
+  
 
 .titulo-autores {
     color: #ffd700;
@@ -572,6 +582,21 @@ button, button *{
     filter: drop-shadow(0 0 1.5rem rgba(1, 184, 190, 0.8));
 }
 
+.project-footer {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    font-size: 0.80rem;
+    text-align: center;
+    padding: 0.5rem 0.5rem;
+    font-family: 'Press Start 2P'; 
+    border-top: 2px dashed #fcd34d;
+    margin-top: 5rem;
+}
+
+  .project-footer strong {
+    color: #ff8800;
+}  
+
 #tela-preta {
 	position: fixed;
 	top: 0;
@@ -611,4 +636,3 @@ button, button *{
 	width: 100%;
 	max-width: 1000px;
 }
-  

@@ -94,6 +94,7 @@
 				const botaoFechar = document.getElementById('fechar-' + telaId);
 				const tela_principal = document.getElementById('principal');
 				const cabeçalho_blog = document.getElementById('cabeçalho_blog');
+				const rodape_blog = document.getElementById('rodape');
 
 				// Desativa o botão de fechar durante a animação
 				if (botaoFechar) botaoFechar.disabled = true;
@@ -107,6 +108,8 @@
 				tela_principal.style.opacity = '0';
 				cabeçalho_blog.style.transition = 'opacity 0.4s';
 				cabeçalho_blog.style.opacity = '0';
+				rodape_blog.style.transition = 'opacity 0.4s';
+				rodape_blog.style.opacity = '0';
 
 				setTimeout(() => {
 					tela_principal.style.display = 'none';
@@ -128,6 +131,8 @@
 				const botaoFechar = document.getElementById('fechar-' + telaId);
 				const tela_principal = document.getElementById('principal');
 				const cabeçalho_blog = document.getElementById('cabeçalho_blog');
+				const rodape_blog = document.getElementById('rodape');
+
 
 				// Desativa o botão de fechar durante a animação
 				if (botaoFechar) botaoFechar.disabled = true;
@@ -141,6 +146,9 @@
 				tela_principal.style.opacity = '0';
 				cabeçalho_blog.style.transition = 'opacity 0.4s';
 				cabeçalho_blog.style.opacity = '0';
+				rodape_blog.style.transition = 'opacity 0.4s';
+				rodape_blog.style.opacity = '0';
+
 
 				setTimeout(() => {
 					tela_principal.style.display = 'none';
@@ -172,6 +180,7 @@
 
 					const tela_principal = document.getElementById('principal');
 					const cabeçalho_blog = document.getElementById('cabeçalho_blog');
+					const rodape_blog = document.getElementById('rodape');
 
 					tela_principal.style.display = 'flex';
 					cabeçalho_blog.style.display = 'block';
@@ -181,6 +190,7 @@
 
 					tela_principal.style.opacity = '1';
 					cabeçalho_blog.style.opacity = '1';
+					rodape_blog.style.opacity = '1';
 					botaoFechar.disabled = false;
 
 					// Remove o event listener para não acumular vários
@@ -222,9 +232,16 @@
 				});
 
 		</script>
+		
+		<footer class="project-footer" id="rodape">
+			<p>Projeto desenvolvido por <strong>Arthur Vieira, Iglesio Carvalho, Nícolas Rafael</strong> – IFPI © 2025</p>
+			<p>Todos os direitos reservados. Parte do projeto: <strong>Blog ADS Balatro IFPI</strong></p>
+		</footer>  
+
 		<!-- Tela preta durante transição -->
 		<div id="tela-preta"></div>
 
 		</div>
+  
 	</body>
 </html>
