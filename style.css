@@ -148,7 +148,7 @@ button {
 }
 
 button:hover {
-    transform: scale(1.1); /* Aumentar levemente o botão */
+    transform: translateY(-25px) scale(1.05);
     box-shadow: 0 0 15px 5px rgb(240, 181, 55); /* Efeito de luz ao redor */
 }
 
@@ -197,14 +197,22 @@ button, button *{
     height: 30rem;
 }
 
-#background-links{
-    margin: 0rem;
-    padding: 0rem;
-    background-image: url(assets/fundo-shop-balatro.png);
+#background-links {
+    position:static;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-image: url('assets/fundo-shop-balatro.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    z-index: -1;
+    overflow: hidden;  /* ❌ impede qualquer rolagem */
 }
+
 
 /* Estilos para a tela de autores no estilo Balatro */
 #tela-autores {
@@ -224,16 +232,50 @@ button, button *{
 }
 
 .carta-autor {
-    width: 200px; /* Largura da carta */
-    height: 300px; /* Altura da carta */
-    background-size: cover;
-    background-position: center;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     position: relative;
+    width: 200px;
+    height: 300px;
+    background: url('carta.jpg') no-repeat center/cover;
+    border-radius: 15px;
     overflow: hidden;
-    cursor: pointer;
+    z-index: 1;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.5));
 }
+
+/* Brilho correndo */
+.carta-autor::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, yellow, transparent, yellow);
+    border-radius: 17px;
+    z-index: 2;
+    background-size: 400% 400%;
+    animation: border-glow 3s linear infinite;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  @keyframes border-glow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* Mostrar brilho ao passar o mouse */
+  .carta-autor:hover::before {
+    opacity: 1;
+  }
 
 .autor-1 {
     background-image: url('caminho-da-imagem-1.jpg');
@@ -337,14 +379,6 @@ button, button *{
     object-fit: contain;
 }
 
-.side_bar {
-    color: #29012b;
-    background-color: rgba(5, 5, 5, 0.833);
-    width: 25vw;
-    height: 45.5vw;
-    margin-left: 50px;
-}
-
 #postagem_gerais {
     display: flex;
     flex-direction: column;
@@ -427,4 +461,98 @@ button, button *{
     text-align: justify;
     font-size: 1rem;
     line-height: 1.6;
+  
+.sidebar {
+    width: 20rem;
+    height: 55rem;
+    background-color: #444444;
+    border-left: 0.3rem solid rgb(175, 61, 61);
+    border-right: 0.3rem solid rgb(175, 61, 61);
+    box-sizing: border-box;
+    margin-left: 3rem;
+
+    display: flex;              /* ativa flexbox */
+    justify-content: center;    /* centraliza na horizontal */
+    align-items: start;         /* alinha no topo verticalmente */
+    padding-top: 4rem;          /* espaçamento superior para afastar do topo */
+}
+
+.links-box {
+    width: 18.7rem;
+    height: 15rem;
+    background-color: #3b3b3b;
+    border: 0.5rem solid rgb(175, 61, 61);
+    border-radius: 1rem;
+    box-sizing: border-box;
+    display: flex;              /* ativa flexbox */
+    justify-content: center;    /* centraliza na horizontal */
+    align-items: center;        /* centraliza na vertical */
+    padding-top: 0.5rem;
+}
+
+.links-image {
+    width: 90%;
+    height: 80%;
+    border-radius: 2.2rem;
+    transition: box-shadow 0.3s ease;
+}
+
+.links-image:hover{
+    filter: drop-shadow(0 0 1.5rem rgba(243, 186, 79, 0.8));
+}
+
+.local-links {
+    width:60rem;
+    height: 45rem;
+    background-color: #444444;
+    border: 0.3rem solid rgb(175, 61, 61);
+    border-radius: 1rem;
+    box-sizing: border-box;
+    margin-top: 20rem;
+    display: flex;
+    flex-direction: column;  
+    justify-content: center;    /* centraliza na horizontal */
+    align-items: center;   /* centraliza conteúdo horizontalmente */  
+}
+
+#local-links-interno{
+    width:58rem;
+    height: 36rem;
+    background-color: #252525;
+    border-radius: 1rem;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 7rem;
+}
+
+.container {
+    display: flex;
+    align-items: center; /* centraliza verticalmente os filhos */
+    height: 100vh;        /* ocupa a altura total da janela */
+    gap: 5rem;
+}
+
+#ajustar-altura-deck {
+    margin-top: 38rem;
+    color: white;
+}
+
+#ajustar-numero {
+    margin-left: 6rem;
+}
+
+.cartas-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas */
+    grid-template-rows: repeat(2, auto);   /* 2 linhas */
+    gap: 1rem; /* Espaço entre as cartas */
+    justify-items: center; /* Centraliza horizontalmente cada carta */
+    align-items: center;   /* Centraliza verticalmente cada carta */
+    padding: 5rem;
+}
+
+.cartas-links img{
+    width: 10rem;
+    height: 12rem;
+    margin: 0.5rem;
 }
