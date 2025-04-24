@@ -1,10 +1,10 @@
 @keyframes subirTela {
     from {
-        transform: translate(-50%, 50%); /* começa mais pra baixo */
+        transform: translate(50%, 0%); /* começa mais pra baixo */
         opacity: 0;
     }
     to {
-        transform: translate(-50%, -50%); /* termina centralizado */
+        transform: translate(0%, 0%); /*termina centralizado */
         opacity: 1;
     }
 }
@@ -379,6 +379,89 @@ button, button *{
     object-fit: contain;
 }
 
+#postagem_gerais {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.conteiner-postagens {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px;
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+}
+
+.postagem-feed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%); /* começa abaixo do centro */
+    width: 80vw;
+    max-width: 800px;
+    height: 70vh;
+    background-color: rgba(10, 10, 10, 0.95);
+    z-index: 100;
+    display: none;
+    color: white;
+    padding: 2rem;
+    overflow-y: auto;
+    border-radius: 1rem;
+    margin-left: 200px;
+    background: repeating-linear-gradient(
+        to bottom,
+        #ff6f00,
+        #ff6f00 20px,
+        #e0ab1a 20px,
+        #e0ab1a 40px
+    );
+}
+
+.background-feed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%); /* começa abaixo do centro */
+    width: 70vw;
+    max-width: 700px;
+    height: 60vh;
+    background-color: rgba(236, 202, 129, 0.95);
+    z-index: 100;
+    display: flex;
+    color: white;
+    padding: 2rem;
+    overflow-y: auto;
+    border-radius: 1rem;
+}
+
+.ativo {
+    display: flex !important;
+    opacity: 1;
+    visibility: visible;
+}
+
+.titulo-postagens {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #ffd700;
+}
+
+.bloco-postagens {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    height: 50vh;
+    overflow-y: auto;
+    text-align: justify;
+    font-size: 1rem;
+    line-height: 1.6;
+  
 .sidebar {
     width: 20rem;
     height: 55rem;
