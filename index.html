@@ -84,9 +84,8 @@
 			<button id="fechar-autores" class="bloco-botão" onclick="fecharTela('autores')">Fechar</button>
 		</div>
 
-		<div id="tela-links" class="tela-sobreposta">
-			<h1>Links</h1>
-			<button id="fechar-links" class="bloco-botão" onclick="fecharTela('links')">Fechar</button>
+		<div id="tela-links">
+			<div id="conteudo-links"></div>
 		</div>
 
 		<script>
@@ -161,27 +160,39 @@
 				abrirTela('postagens');
 			});
 
+
 			document.querySelector('#botao_autores').addEventListener('click', () => {
 				abrirTela('autores');
-			});
+				const conteudoAutores = document.getElementById('conteudo-autores');
 
-			document.querySelector('#botao_links').addEventListener('click', () => {
-				abrirTela('links');
-			});
-			
-			document.querySelector('#botao_autores').addEventListener('click', () => {
-			abrirTela('autores');
-			const conteudoAutores = document.getElementById('conteudo-autores');
+				// Carrega o conteúdo do arquivo autores.html
+				fetch('authors.html')
+					.then(response => response.text())
+					.then(html => {
+						conteudoAutores.innerHTML = html;
+					})
+					.catch(error => console.error('Erro ao carregar os autores:', error));
+				});
 
-			// Carrega o conteúdo do arquivo autores.html
-			fetch('authors.html')
-				.then(response => response.text())
-				.then(html => {
-					conteudoAutores.innerHTML = html;
-				})
-				.catch(error => console.error('Erro ao carregar os autores:', error));
-			});
-			
+
+				document.querySelector('#botao_links').addEventListener('click', () => {
+					const telaPreta = document.getElementById('tela-preta');
+
+					// Ativa a tela preta
+					telaPreta.classList.add('ativo');
+
+					// Após um breve delay para dar o efeito de transição
+					setTimeout(() => {
+						// Carrega a nova página "links-page.html"
+						window.location.href = "links-page.html";  // Isso carrega a página completa
+					}, 500); // Espera meio segundo antes de redirecionar
+				});
+
+
 		</script>
+		<!-- Tela preta durante transição -->
+		<div id="tela-preta"></div>
+
+		</div>
 	</body>
 </html>
