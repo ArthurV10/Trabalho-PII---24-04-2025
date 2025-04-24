@@ -71,50 +71,62 @@
                 <button class="bloco-botão" id="botao_autores">Autores</button>
                 <button class="bloco-botão" id="botao_links">Links</button>
             </div>
-			</main>
-
-		<div id="tela-autores" class="tela-sobreposta">
-			<img id="sale" src="https://i.pinimg.com/736x/6d/ef/7f/6def7fa38720c0da12d40969b10aff9c.jpg" alt="sale balatrito">
-			<h1>Dale balatrito</h1>
-			<button class="bloco-botão" onclick="fecharTela('autores')">Fechar</button>
-		</div>
+		</main>
 
 		<div id="tela-postagens" class="tela-sobreposta">
 			<h1>Postagens</h1>
-			<button class="bloco-botão" onclick="fecharTela('postagens')">Fechar</button>
+			<button id="fechar-postagens" class="bloco-botão" onclick="fecharTela('postagens')">Fechar</button>
 		</div>
 		
+		<div id="tela-autores" class="tela-sobreposta">
+			<img id="sale" src="https://i.pinimg.com/736x/6d/ef/7f/6def7fa38720c0da12d40969b10aff9c.jpg" alt="sale balatrito">
+			<h1>Dale balatrito</h1>
+			<button id="fechar-autores"  class="bloco-botão" onclick="fecharTela('autores')">Fechar</button>
+		</div>
 
 		<div id="tela-links" class="tela-sobreposta">
 			<h1>Links</h1>
-			<button class="bloco-botão" onclick="fecharTela('links')">Fechar</button>
+			<button id="fechar-links" class="bloco-botão" onclick="fecharTela('links')">Fechar</button>
 		</div>
 
 		<script>
 			// Função para abrir a tela sobreposta
 			function abrirTela(telaId) {
-				const tela = document.getElementById('tela-' + telaId); // Acessa a tela pelo ID
-				tela.style.display = 'block'; // Exibe a tela
+				const tela = document.getElementById('tela-' + telaId);
+				tela.addEventListener
+				tela.style.display = 'block'; 
 				tela.style.animation = ''; // Remove qualquer animação residual
 				const tela_principal = document.getElementById('principal');
 				tela_principal.style.display = 'none'; // Esconde o conteúdo principal
 				const cabeçalho_blog = document.getElementById('cabeçalho_blog');
 				cabeçalho_blog.style.display = 'none'; // Esconde o cabeçalho
-			}
+			};
 
 			// Função para fechar a tela sobreposta
 			function fecharTela(telaId) {
 				const tela = document.getElementById('tela-' + telaId);
-				tela.style.animation = 'descerTela 0.4s ease-out forwards'
-				
-				tela.addEventListener('animationend', ()=>{
-					tela.style.display = 'none'; // Esconde a tela
+				const botaoFechar = document.getElementById('fechar-' + telaId);
+
+				// Desativa o botão temporariamente
+				botaoFechar.disabled = true;
+
+				tela.style.animation = 'descerTela 0.4s ease-out forwards';
+
+				tela.addEventListener('animationend', function handleAnim() {
+					tela.style.display = 'none';
 					const tela_principal = document.getElementById('principal');
-					tela_principal.style.display = 'flex'; // Exibe o conteúdo principal
+					tela_principal.style.display = 'flex';
 					const cabeçalho_blog = document.getElementById('cabeçalho_blog');
-					cabeçalho_blog.style.display = 'block'; // Exibe o cabeçalho
+					cabeçalho_blog.style.display = 'block';
+
+					// Reativa o botão após a animação
+					botaoFechar.disabled = false;
+
+					// Remove o event listener para não acumular vários
+					tela.removeEventListener('animationend', handleAnim);
 				});
 			};
+
 
 			// Adiciona eventos para os botões
 			document.querySelector('#botao_postagens').addEventListener('click', () => {
