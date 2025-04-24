@@ -197,14 +197,22 @@ button, button *{
     height: 30rem;
 }
 
-#background-links{
-    margin: 0rem;
-    padding: 0rem;
-    background-image: url(assets/fundo-shop-balatro.png);
+#background-links {
+    position:static;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-image: url('assets/fundo-shop-balatro.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    z-index: -1;
+    overflow: hidden;  /* ❌ impede qualquer rolagem */
 }
+
 
 /* Estilos para a tela de autores no estilo Balatro */
 #tela-autores {
@@ -335,4 +343,60 @@ button, button *{
     width: 100%;
     height: 100%;
     object-fit: contain;
+}
+
+.sidebar {
+    width: 20rem;
+    height: 55rem;
+    background-color: #444444;
+    border-left: 0.3rem solid rgb(175, 61, 61);
+    border-right: 0.3rem solid rgb(175, 61, 61);
+    box-sizing: border-box;
+    margin-left: 3rem;
+
+    display: flex;              /* ativa flexbox */
+    justify-content: center;    /* centraliza na horizontal */
+    align-items: start;         /* alinha no topo verticalmente */
+    padding-top: 4rem;          /* espaçamento superior para afastar do topo */
+}
+
+.shop-box {
+    width: 18.7rem;
+    height: 15rem;
+    background-color: #3b3b3b;
+    border: 0.5rem solid rgb(175, 61, 61);
+    border-radius: 1rem;
+    box-sizing: border-box;
+    background-image: url(assets/Links_Logo.png), auto;
+
+    display: flex;              /* ativa flexbox */
+    justify-content: center;    /* centraliza na horizontal */
+    align-items: center;        /* centraliza na vertical */
+    padding-top: 0.5rem;
+}
+
+.shop-image {
+    width: 120%;
+    height: 120%;
+    border-radius: 0.5rem;
+    margin-left: 1rem;
+}
+
+.local-links {
+    width:60rem;
+    height: 45rem;
+    background-color: #444444;
+    border: 0.3rem solid rgb(175, 61, 61);
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    margin-top: 30rem;
+    display: flex;
+    flex-direction: column;     /* centraliza conteúdo horizontalmente */  
+}
+
+.container {
+    display: flex;
+    align-items: center; /* centraliza verticalmente os filhos */
+    height: 100vh;        /* ocupa a altura total da janela */
+    gap: 5rem;
 }
