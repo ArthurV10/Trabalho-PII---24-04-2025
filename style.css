@@ -4,7 +4,7 @@
         opacity: 0;
     }
     to {
-        transform: translate(-50%, -50%); /* termina centralizado */
+        transform: translate(-50%, -50%); /*termina centralizado */
         opacity: 1;
     }
 }
@@ -155,7 +155,7 @@ button {
 }
 
 button:hover {
-    transform: scale(1.1); /* Aumentar levemente o botão */
+    transform: translateY(-25px) scale(1.05);
     box-shadow: 0 0 15px 5px rgb(240, 181, 55); /* Efeito de luz ao redor */
 }
 
@@ -176,16 +176,16 @@ button, button *{
     top: 50%;
     left: 50%;
     transform: translate(-50%, 50%); /* começa abaixo do centro */
-    width: 80vw;
+    width: 60vw;
     max-width: 800px;
-    height: 70vh;
-    background-color: rgba(10, 10, 10, 0.95);
+    height: 80vh;
+    background-color: rgba(32, 31, 31, 0.95);
     z-index: 100;
     animation: subirTela 0.4s ease-out forwards;
     display: none;
     color: white;
     padding: 2rem;
-    overflow-y: auto;
+    overflow-y: none;
     border-radius: 1rem;
 }
 
@@ -232,23 +232,57 @@ button, button *{
 }
 
 .carta-autor {
-    width: 200px; /* Largura da carta */
-    height: 300px; /* Altura da carta */
-    background-size: cover;
-    background-position: center;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     position: relative;
+    width: 200px;
+    height: 300px;
+    background: url('carta.jpg') no-repeat center/cover;
+    border-radius: 15px;
     overflow: hidden;
-    cursor: pointer;
+    z-index: 1;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.5));
 }
 
+/* Brilho correndo */
+.carta-autor::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, yellow, transparent, yellow);
+    border-radius: 17px;
+    z-index: 2;
+    background-size: 400% 400%;
+    animation: border-glow 3s linear infinite;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  @keyframes border-glow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* Mostrar brilho ao passar o mouse */
+  .carta-autor:hover::before {
+    opacity: 1;
+  }
+
 .autor-1 {
-    background-image: url('caminho-da-imagem-1.jpg');
+    background-image: url('assets/jokerArthur.jpg');
 }
 
 .autor-2 {
-    background-image: url('caminho-da-imagem-2.jpg');
+    background-image: url('assets/jokerIglesio.png');
 }
 
 .autor-3 {
@@ -345,6 +379,89 @@ button, button *{
     object-fit: contain;
 }
 
+#postagem_gerais {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.conteiner-postagens {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px;
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+}
+
+.postagem-feed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%); /* começa abaixo do centro */
+    width: 80vw;
+    max-width: 800px;
+    height: 70vh;
+    background-color: rgba(10, 10, 10, 0.95);
+    z-index: 100;
+    display: none;
+    color: white;
+    padding: 2rem;
+    overflow-y: auto;
+    border-radius: 1rem;
+    margin-left: 200px;
+    background: repeating-linear-gradient(
+        to bottom,
+        #ff6f00,
+        #ff6f00 20px,
+        #e0ab1a 20px,
+        #e0ab1a 40px
+    );
+}
+
+.background-feed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%); /* começa abaixo do centro */
+    width: 70vw;
+    max-width: 700px;
+    height: 60vh;
+    background-color: rgba(236, 202, 129, 0.95);
+    z-index: 100;
+    display: flex;
+    color: white;
+    padding: 2rem;
+    overflow-y: auto;
+    border-radius: 1rem;
+}
+
+.ativo {
+    display: flex !important;
+    opacity: 1;
+    visibility: visible;
+}
+
+.titulo-postagens {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #ffd700;
+}
+
+.bloco-postagens {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    height: 50vh;
+    overflow-y: auto;
+    text-align: justify;
+    font-size: 1rem;
+    line-height: 1.6;
+}
 .sidebar {
     width: 20rem;
     height: 70rem;
