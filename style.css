@@ -195,3 +195,12 @@ button, button *{
     width: 49rem;
     height: 30rem;
 }
+
+#background-links{
+    margin: 0rem;
+    padding: 0rem;
+    background-image: url(assets/fundo-shop-balatro.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
