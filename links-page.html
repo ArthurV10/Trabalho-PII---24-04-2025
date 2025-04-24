@@ -19,6 +19,25 @@
                 transition: opacity 0.5s ease-in-out;
                 z-index: 999; /* Fica acima de todos os outros elementos */
             }
+
+            @keyframes flutuar {
+                0% {
+                    transform: translateY(0px) rotate(0deg);
+                }
+                50% {
+                    transform: translateY(-8px) rotate(1deg);
+                }
+                100% {
+                    transform: translateY(0px) rotate(0deg);
+                }
+            }
+
+        .carta-interativa {
+            animation: flutuar 3s ease-in-out infinite;
+            transition: transform 0.3s ease;
+            will-change: transform;
+        }
+
         </style>
     </head>
 
@@ -116,6 +135,28 @@
                 }, 1000); // 1000ms = 1 segundo
             });
 
+
+            cartas.forEach(carta => {
+                carta.addEventListener('mousemove', (e) => {
+                    const rect = carta.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const rotateX = ((y - centerY) / centerY) * -25;
+                    const rotateY = ((x - centerX) / centerX) * 30;
+
+                    carta.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                    carta.style.animation = 'none'; // Pausa a animação
+                });
+
+                carta.addEventListener('mouseleave', () => {
+                    carta.style.transform = 'rotateX(0deg) rotateY(0deg)';
+                    carta.style.transition = 'transform 0.3s ease';
+                    carta.style.animation = 'flutuar 3s ease-in-out infinite'; // Retoma a animação
+                });
+            });
         </script>
     </body>
 </html>
