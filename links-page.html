@@ -43,33 +43,6 @@
                 will-change: transform;
             }
 
-            #popup {
-                position: absolute;
-                color: white;
-                padding: 8px 12px;
-                border-radius: 8px;
-                font-size: 14px;
-                pointer-events: none; /* deixa o mouse passar por cima */
-                z-index: 1000;
-                display: none;
-                max-width: 200px;
-                backdrop-filter: blur(3px);
-            }
-
-            #popup p {
-                margin: 0;
-            }
-
-            #popup-conteudo {
-                background-color: #ccc; /* cinza claro */
-                border: 2px solid #007BFF; /* azul */
-                padding: 10px 15px;
-                border-radius: 8px;
-                color: #000;
-                box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-                font-size: 14px;
-                white-space: nowrap;
-            }
         </style>
     </head>
     <body id="principal-links">
@@ -133,11 +106,26 @@
             const cartas = document.querySelectorAll('.carta-interativa');
             const popup = document.getElementById('popup');
             const popupConteudo = document.getElementById('popup-conteudo');
-        
+
+            // Função para destacar palavras específicas
+            function destacarTexto(texto, palavras) {
+                palavras.forEach(palavra => {
+                    const regex = new RegExp(`(${palavra})`, 'gi'); // Expressão regular para encontrar a palavra
+                    texto = texto.replace(regex, '<span class="destaque">$1</span>');
+                });
+                return texto;
+            }
+
             cartas.forEach(carta => {
                 carta.addEventListener('mouseenter', (e) => {
                     popup.style.display = 'block';
-                    popupConteudo.innerHTML = `<p>${carta.dataset.info}</p>`;
+                    
+                    // Array com as palavras que você quer destacar
+                    const palavrasParaDestacar = ['HTML', 'CSS', 'performance', 'compatibilidade'];  // Exemplo de palavras
+                    
+                    // Aplicando o destaque ao texto do data-info
+                    const textoComDestaque = destacarTexto(carta.dataset.info, palavrasParaDestacar);
+                    popupConteudo.innerHTML = `<p>${textoComDestaque}</p>`;
                 });
 
                 carta.addEventListener('mousemove', (e) => {
@@ -158,10 +146,10 @@
                     const y = e.clientY - rect.top;
                     const centerX = rect.width / 2;
                     const centerY = rect.height / 2;
-        
+
                     const rotateX = ((y - centerY) / centerY) * -25;
                     const rotateY = ((x - centerX) / centerX) * 30;
-        
+
                     carta.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
                     carta.style.animation = 'none'; // Pausa a animação
                 });
@@ -183,6 +171,8 @@
                     window.location.replace('index.html');
                 }, 1000); // 1000ms = 1 segundo
             });
+
+
         </script>
     </body>
 </html>

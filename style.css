@@ -637,9 +637,6 @@ button, button *{
     gap: 5rem;
 }
 
-    
-
-
 .cartas-links img:hover {
     filter: drop-shadow(0 0 1.5rem rgba(1, 184, 190, 0.8));
     cursor: url(assets/Hand2.png), auto; /* cursor aqui, direto na imagem */
@@ -719,12 +716,17 @@ button, button *{
 #popup-conteudo {
     background-color: #dfdfdf; /* cinza claro */
     border: 0.125rem solid #880000; /* 2px convertido para rem */
+    border-radius: 0.5rem;
     padding: 0.625rem 0.9375rem; /* 10px 15px convertido para rem */
     color: #000;
     font-size: 0.875rem; /* 14px convertido para rem */
     justify-content: center;
     white-space: nowrap;
     backdrop-filter: none; /* Remove qualquer efeito de blur */
+}
+
+.destaque {
+    color: #db8c15;
 }
 
 
