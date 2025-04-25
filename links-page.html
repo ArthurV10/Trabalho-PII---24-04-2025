@@ -5,36 +5,158 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css" />
         <title>Document</title>
+        <style>
+            /* Overlay 100% preto */
+            #overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 1); /* 100% preto */
+                opacity: 0;
+                visibility: hidden;
+                transition: opacity 0.5s ease-in-out;
+                z-index: 999; /* Fica acima de todos os outros elementos */
+            }
+
+            @keyframes flutuar {
+                0% {
+                    transform: translateY(0px) rotate(0deg);
+                }
+                50% {
+                    transform: translateY(-8px) rotate(1deg);
+                }
+                100% {
+                    transform: translateY(0px) rotate(0deg);
+                }
+            }
+
+        .carta-interativa {
+            animation: flutuar 3s ease-in-out infinite;
+            transition: transform 0.3s ease;
+            will-change: transform;
+        }
+
+        </style>
     </head>
 
-    <body id="background-links">
+    <body id="principal-links">
+        <video id="background-links" autoplay loop muted>
+            <source src="assets/background_green.mp4" type="video/mp4" />
+            Seu navegador não suporta vídeos.
+        </video>
+        
         <div class="container">
             <div>
                 <div class="sidebar">
                     <div class="links-box">
-                        <img src="assets/Links_Logo_Novo.png" alt="Logo Links"class="links-image" >
+                        <img src="assets/Links_Logo_Novo.png" alt="Logo Links" class="links-image">
+                    </div>
+                    <div>
+                        <button id= "botão-voltar" class="bloco-botão">VOLTAR</button>
                     </div>
                 </div>
             </div>
 
-            <div class = "local-links">
+            <div class="local-links">
                 <div id="local-links-interno">
                     <div class="cartas-links">
-                        <img src="assets/carta1.png" alt="Carta1">
-                        <img src="assets/carta2.png" alt="Carta2">
-                        <img src="assets/carta3.png" alt="Carta1">
-                        <img src="assets/carta4.png" alt="Carta4">
-                        <img src="assets/carta5.png" alt="Carta5">
-                        <img src="assets/carta6.png" alt="Carta6">
+                        <a href="https://developer.mozilla.org/pt-BR/docs/Web/HTML" target="_blank" rel="noopener noreferrer">
+                            <img class="carta-interativa" src="assets/carta1.png" alt="Carta1">
+                        </a>
+                        <a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS" target="_blank" rel="noopener noreferrer">
+                            <img class="carta-interativa" src="assets/carta2.png" alt="Carta2">
+                        </a>
+                        <a href="https://www.w3schools.com/html/" target="_blank" rel="noopener noreferrer">
+                            <img class="carta-interativa" src="assets/carta3.png" alt="Carta1">
+                        </a>
+                        <a href="https://web.dev/?hl=pt-br" target="_blank" rel="noopener noreferrer">
+                            <img class="carta-interativa" src="assets/carta4.png" alt="Carta4">
+                        </a>
+                        <a href="https://css-tricks.com/snippets/css/" target="_blank" rel="noopener noreferrer">
+                            <img class="carta-interativa" src="assets/carta5.png" alt="Carta5">
+                        </a>
+                        <a href="https://caniuse.com" target="_blank" rel="noopener noreferrer">
+                            <img class="carta-interativa" src="assets/carta6.png" alt="Carta6">
+                        </a> 
                     </div>
                 </div>
             </div>
 
             <div id="ajustar-altura-deck">
-                <img src="https://oyster.ignimgs.com/mediawiki/apis.ign.com/balatro/4/49/Balatro-red_deck.png?width=1920" 
-                alt="Carta Balatro">
+                <a href="https://store.steampowered.com/app/2379780/Balatro/" target="_blank" rel="noopener noreferrer">
+                    <img src="https://oyster.ignimgs.com/mediawiki/apis.ign.com/balatro/4/49/Balatro-red_deck.png?width=1920" 
+                    alt="Carta Balatro">
+                </a>
                 <p id="ajustar-numero">52/52</p>
             </div>
         </div>
+
+        <!-- Overlay de escurecimento -->
+        <div id="overlay"></div>
+
+        <script>
+            // Código para mover as cartas interativas (já existente)
+            const cartas = document.querySelectorAll('.carta-interativa');
+        
+            cartas.forEach(carta => {
+                carta.addEventListener('mousemove', (e) => {
+                    const rect = carta.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+        
+                    const rotateX = ((y - centerY) / centerY) * -30;
+                    const rotateY = ((x - centerX) / centerX) * 30;
+        
+                    carta.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                    carta.style.transition = 'transform 0.1s ease';
+                });
+        
+                carta.addEventListener('mouseleave', () => {
+                    carta.style.transform = 'rotateX(0deg) rotateY(0deg)';
+                    carta.style.transition = 'transform 0.3s ease';
+                });
+            });
+
+            // Seleciona o único botão com a classe "botão-voltar" usando querySelector
+            document.querySelector('#botão-voltar').addEventListener('click', () => {
+                // Exibe o overlay 100% preto
+                const overlay = document.getElementById('overlay');
+                overlay.style.visibility = 'visible';
+                overlay.style.opacity = '1';
+
+                // Aguarda 1 segundo antes de redirecionar
+                setTimeout(() => {
+                    // Utiliza replace para evitar que o botão de voltar do navegador traga a página anterior
+                    window.location.replace('index.html');
+                }, 1000); // 1000ms = 1 segundo
+            });
+
+
+            cartas.forEach(carta => {
+                carta.addEventListener('mousemove', (e) => {
+                    const rect = carta.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const rotateX = ((y - centerY) / centerY) * -25;
+                    const rotateY = ((x - centerX) / centerX) * 30;
+
+                    carta.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                    carta.style.animation = 'none'; // Pausa a animação
+                });
+
+                carta.addEventListener('mouseleave', () => {
+                    carta.style.transform = 'rotateX(0deg) rotateY(0deg)';
+                    carta.style.transition = 'transform 0.3s ease';
+                    carta.style.animation = 'flutuar 3s ease-in-out infinite'; // Retoma a animação
+                });
+            });
+        </script>
     </body>
 </html>

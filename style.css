@@ -107,6 +107,13 @@ h1 {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+#botão-voltar {
+   margin-top: 20rem; 
+   background-color: transparent;
+   border-radius: 1rem;
+   color: #29012b;
+}
+
 .paragrafo-recuado {
     text-indent: 30px;
     margin-left: 30px;
@@ -156,16 +163,6 @@ button, button *{
     cursor: url('assets/Hand2.png'), auto;
 }
 
-.bloco-botao:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 15px 5px white;
-  }
-
-  /* força o cursor até dentro dos filhos */
-  .bloco-botao * {
-    pointer-events: none;
-  }
-
 .Postagens {
 	display: none;
 }
@@ -179,16 +176,16 @@ button, button *{
     top: 50%;
     left: 50%;
     transform: translate(-50%, 50%); /* começa abaixo do centro */
-    width: 80vw;
+    width: 60vw;
     max-width: 800px;
-    height: 70vh;
-    background-color: rgba(10, 10, 10, 0.95);
+    height: 80vh;
+    background-color: rgba(32, 31, 31, 0.95);
     z-index: 100;
     animation: subirTela 0.4s ease-out forwards;
     display: none;
     color: white;
     padding: 2rem;
-    overflow-y: auto;
+    overflow-y: none;
     border-radius: 1rem;
 }
 
@@ -197,20 +194,23 @@ button, button *{
     height: 30rem;
 }
 
-#background-links {
-    position:static;
+#principal-links {
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    margin: 0;
-    padding: 0;
-    background-image: url('assets/fundo-shop-balatro.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;  /* Impede qualquer rolagem no conteúdo específico */
+}
+
+#background-links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100vw;
+    min-height: 100vh;
+    object-fit: cover;
     z-index: -1;
-    overflow: hidden;  /* ❌ impede qualquer rolagem */
 }
 
 
@@ -278,11 +278,11 @@ button, button *{
   }
 
 .autor-1 {
-    background-image: url('caminho-da-imagem-1.jpg');
+    background-image: url('assets/jokerArthur.jpg');
 }
 
 .autor-2 {
-    background-image: url('caminho-da-imagem-2.jpg');
+    background-image: url('assets/jokerIglesio.png');
 }
 
 .autor-3 {
@@ -325,7 +325,7 @@ button, button *{
     left: 0;
     right: 0;
     background: rgba(0,0,0,0.8);
-    color: white;
+    color: rgb(255, 123, 0);
     padding: 15px;
     transform: translateY(100%);
     transition: transform 0.3s ease;
@@ -343,6 +343,16 @@ button, button *{
     margin: 5px 0;
     font-size: 0.9em;
 }
+
+.carta-autor .info-autor {
+    color: white;
+  }
+  
+.carta-autor .info-autor strong {
+    color: inherit; /* para manter a cor padrão ou */
+    color: #ff9900;  /* ou uma cor diferente, tipo amarelo ouro */
+}
+  
 
 .titulo-autores {
     color: #ffd700;
@@ -465,7 +475,7 @@ button, button *{
 
 .sidebar {
     width: 20rem;
-    height: 43rem;
+    height: 70rem;
     background-color: #444444;
     border-left: 0.3rem solid rgb(175, 61, 61);
     border-right: 0.3rem solid rgb(175, 61, 61);
@@ -480,6 +490,7 @@ button, button *{
     justify-content: center;    /* centraliza na horizontal */
     align-items: start;         /* alinha no topo verticalmente */
     padding-top: 1rem;          /* espaçamento superior para afastar do topo */
+
 }
 
 .links-box {
@@ -495,10 +506,11 @@ button, button *{
     padding-top: 0.5rem;
 }
 
+
+
 .links-image {
     width: 90%;
     height: 80%;
-    border-radius: 2.2rem;
     transition: box-shadow 0.3s ease;
 }
 
@@ -544,6 +556,12 @@ button, button *{
     color: white;
 }
 
+#ajustar-altura-deck :hover{
+    cursor: url(assets/Hand2.png), auto;
+    box-shadow: 0rem 0rem 0rem 0.4rem rgb(255, 99, 88);
+    border-radius: 0.7rem;
+}
+
 #ajustar-numero {
     margin-left: 6rem;
 }
@@ -552,10 +570,12 @@ button, button *{
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 colunas */
     grid-template-rows: repeat(2, auto);   /* 2 linhas */
-    gap: 1rem; /* Espaço entre as cartas */
-    justify-items: center; /* Centraliza horizontalmente cada carta */
-    align-items: center;   /* Centraliza verticalmente cada carta */
+    gap: 1rem;
+    justify-items: center;
+    align-items: center;
     padding: 5rem;
+    transition: box-shadow 2s ease;
+    perspective: 1000px;
 }
 
 .cartas-links img {
@@ -618,4 +638,66 @@ button, button *{
     align-items: center; /* centraliza verticalmente os filhos */
     height: 100vh;        /* ocupa a altura total da janela */
     gap: 5rem;
+}
+
+    cursor: url(assets/Hand2.png), auto; /* cursor aqui, direto na imagem */
+}
+
+.cartas-links img:hover {
+    filter: drop-shadow(0 0 1.5rem rgba(1, 184, 190, 0.8));
+}
+
+.project-footer {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    font-size: 0.80rem;
+    text-align: center;
+    padding: 0.5rem 0.5rem;
+    font-family: 'Press Start 2P'; 
+    border-top: 2px dashed #fcd34d;
+    margin-top: 5rem;
+}
+
+  .project-footer strong {
+    color: #ff8800;
+}  
+
+#tela-preta {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: black;
+	opacity: 0;
+	transition: opacity 0.5s;
+	pointer-events: none;
+	z-index: 1000;
+}
+
+#tela-preta.ativo {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+#tela-links-carregada {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-height: 100vh;
+	background: white;
+	z-index: 1001;
+	overflow-y: auto;
+	padding: 2rem;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	box-sizing: border-box;
+}
+
+/* Estilo interno do conteúdo carregado */
+#tela-links-carregada .container-pagina {
+	width: 100%;
+	max-width: 1000px;
 }
