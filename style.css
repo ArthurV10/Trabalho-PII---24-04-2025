@@ -570,14 +570,14 @@ button, button *{
     gap: 1rem;
     justify-items: center;
     align-items: center;
-    padding: 5rem;
+    padding: 3rem;
     transition: box-shadow 2s ease;
     perspective: 1000px;
 }
 
 .cartas-links img {
-    width: 10rem;
-    height: 12rem;
+    width: 9.5rem;
+    height: 14rem;
     margin: 0.5rem;
 }
 
