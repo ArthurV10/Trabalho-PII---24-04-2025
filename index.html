@@ -194,6 +194,17 @@
 					}, 500); // Espera meio segundo antes de redirecionar
 				});
 
+				document.querySelector('#botao_postagens').addEventListener('click', () => {
+					abrirTela('postagens');
+					const conteudoPostagens = document.getElementById('conteudo-postagens');
+				fetch('postagens-pages.html')
+					.then(response => response.text())
+					.then(html => {
+						conteudoPostagens.innerHTML = html;
+					})
+					.catch(error => console.error('Erro ao carregar postagens:', error));
+				});
+
 		</script>
 		
 		<footer class="project-footer" id="rodape">
