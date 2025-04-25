@@ -472,26 +472,31 @@ button, button *{
     font-size: 1rem;
     line-height: 1.6;
 }
+
 .sidebar {
     width: 20rem;
     height: 70rem;
     background-color: #444444;
     border-left: 0.3rem solid rgb(175, 61, 61);
     border-right: 0.3rem solid rgb(175, 61, 61);
+    border-top: 0.3rem solid rgb(175, 61, 61);
+    border-bottom: 0.3rem solid rgb(175, 61, 61);
     box-sizing: border-box;
     margin-left: 3rem;
+    border-radius: 1rem;
+    /* z-index: 1000; */
 
     display: flex;              /* ativa flexbox */
-    flex-direction: column;     /* organiza os elementos na vertical */
-    justify-content: flex-start; /* alinha os itens no topo */
-    align-items: center;         /* centraliza na horizontal */
-    padding-top: 12rem;           /* redução no espaçamento superior */
+    justify-content: center;    /* centraliza na horizontal */
+    align-items: start;         /* alinha no topo verticalmente */
+    padding-top: 1rem;          /* espaçamento superior para afastar do topo */
+
 }
 
 .links-box {
     width: 18.7rem;
     height: 15rem;
-    background-color: #3b3b3b;
+    background-color: #3b3b3b00;
     border: 0.5rem solid rgb(175, 61, 61);
     border-radius: 1rem;
     box-sizing: border-box;
@@ -538,6 +543,8 @@ button, button *{
 }
 
 .container {
+    top: 0;
+    left: 0;
     display: flex;
     align-items: center; /* centraliza verticalmente os filhos */
     height: 100vh;        /* ocupa a altura total da janela */
@@ -575,6 +582,64 @@ button, button *{
     width: 10rem;
     height: 12rem;
     margin: 0.5rem;
+}
+
+.sidebar-post {
+    width: 20rem;
+    height: 43rem;
+    background-color: #444444;
+    border-left: 0.3rem solid rgb(175, 61, 61);
+    border-right: 0.3rem solid rgb(175, 61, 61);
+    border-top: 0.3rem solid rgb(175, 61, 61);
+    border-bottom: 0.3rem solid rgb(175, 61, 61);
+    box-sizing: border-box;
+    margin-left: 3rem;
+    border-radius: 1rem;
+    flex-direction: column;
+    /* z-index: 1000; */
+
+    display: flex;              /* ativa flexbox */
+    justify-content: center;    /* centraliza na horizontal */
+    align-items: start;         /* alinha no topo verticalmente */
+    padding-top: 1rem;          /* espaçamento superior para afastar do topo */
+}
+
+.post-box {
+    width: 18.7rem;
+    height: 15rem;
+    background-color: #3b3b3b00;
+    border: 0.5rem solid rgb(175, 61, 61);
+    border-radius: 1rem;
+    box-sizing: border-box;
+    display: flex;              /* ativa flexbox */
+    justify-content: center;    /* centraliza na horizontal */
+    align-items: center;        /* centraliza na vertical */
+    padding-top: 0.5rem;
+}
+
+.posts-image {
+    width: 70%;
+    height: 60%;
+    border-radius: 2.2rem;
+    transition: box-shadow 0.3s ease;
+}
+
+.post-image:hover{
+    filter: drop-shadow(0 0 1.5rem rgba(243, 186, 79, 0.8));
+}
+
+.post-container {
+    position: relative;
+    margin-top: 0;
+    padding-top: 2rem;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center; /* centraliza verticalmente os filhos */
+    height: 100vh;        /* ocupa a altura total da janela */
+    gap: 5rem;
+}
+
     cursor: url(assets/Hand2.png), auto; /* cursor aqui, direto na imagem */
 }
 
