@@ -699,3 +699,32 @@ button, button *{
 	width: 100%;
 	max-width: 1000px;
 }
+
+#popup {
+    position: absolute;
+    padding: 0.5rem 0.75rem; /* 8px 12px convertido para rem */
+    font-size: 0.875rem; /* 14px convertido para rem */
+    pointer-events: none; /* deixa o mouse passar por cima */
+    z-index: 1000;
+    display: none;
+    max-width: 50rem; /* 200px convertido para rem */
+    margin-left: 1.5rem; /* 1px convertido para rem */
+    backdrop-filter: none; /* Remove qualquer efeito de blur */
+}
+
+#popup p {
+    margin: 0;
+}
+
+#popup-conteudo {
+    background-color: #dfdfdf; /* cinza claro */
+    border: 0.125rem solid #880000; /* 2px convertido para rem */
+    padding: 0.625rem 0.9375rem; /* 10px 15px convertido para rem */
+    color: #000;
+    font-size: 0.875rem; /* 14px convertido para rem */
+    justify-content: center;
+    white-space: nowrap;
+    backdrop-filter: none; /* Remove qualquer efeito de blur */
+}
+
+
