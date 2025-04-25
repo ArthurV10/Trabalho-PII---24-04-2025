@@ -479,17 +479,14 @@ button, button *{
     background-color: #444444;
     border-left: 0.3rem solid rgb(175, 61, 61);
     border-right: 0.3rem solid rgb(175, 61, 61);
-    border-top: 0.3rem solid rgb(175, 61, 61);
-    border-bottom: 0.3rem solid rgb(175, 61, 61);
     box-sizing: border-box;
     margin-left: 3rem;
-    border-radius: 1rem;
-    /* z-index: 1000; */
 
     display: flex;              /* ativa flexbox */
-    justify-content: center;    /* centraliza na horizontal */
-    align-items: start;         /* alinha no topo verticalmente */
-    padding-top: 1rem;          /* espaçamento superior para afastar do topo */
+    flex-direction: column;     /* organiza os elementos na vertical */
+    justify-content: flex-start; /* alinha os itens no topo */
+    align-items: center;         /* centraliza na horizontal */
+    padding-top: 12rem;           /* redução no espaçamento superior */        /* espaçamento superior para afastar do topo */
 
 }
 
@@ -640,11 +637,12 @@ button, button *{
     gap: 5rem;
 }
 
-    cursor: url(assets/Hand2.png), auto; /* cursor aqui, direto na imagem */
-}
+    
+
 
 .cartas-links img:hover {
     filter: drop-shadow(0 0 1.5rem rgba(1, 184, 190, 0.8));
+    cursor: url(assets/Hand2.png), auto; /* cursor aqui, direto na imagem */
 }
 
 .project-footer {
