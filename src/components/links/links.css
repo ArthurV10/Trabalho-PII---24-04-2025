@@ -1,0 +1,202 @@
+#principal-links {
+    top: 0;
+    width: auto;
+    position: relative;
+    overflow: hidden;  /* Impede qualquer rolagem no conteúdo específico */
+}
+
+#background-links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100vw;
+    min-height: 100vh;
+    object-fit: cover;  
+    z-index: -1;
+}
+
+.links-box {
+    transform: scale(0.9);
+    width: 17.4rem;
+    height: 14rem;
+    background-color: #3b3b3b00;
+    border: 0.5rem solid rgb(175, 61, 61);
+    border-radius: 1rem;
+    box-sizing: border-box;
+    display: flex;              /* ativa flexbox */
+    justify-content: center;    /* centraliza na horizontal */
+    align-items: center;        /* centraliza na vertical */
+    margin-top: 3rem;
+}
+
+.links-image {
+    width: 90%;
+    height: 80%;
+    transform:scaleY(0.9) ;
+    transition: box-shadow 0.3s ease;
+}
+
+.links-image:hover{
+    filter: drop-shadow(0 0 1.5rem rgba(243, 186, 79, 0.8));
+}
+
+.local-links {
+    width:60rem;
+    height: 50rem;
+    background-color: #444444;
+    border: 0.3rem solid rgb(175, 61, 61);
+    border-radius: 1rem;
+    box-sizing: border-box;
+    margin-top: 20rem;
+    display: flex;
+    flex-direction: column;  
+    justify-content: center;    /* centraliza na horizontal */
+    align-items: center;   /* centraliza conteúdo horizontalmente */  
+}
+
+#local-links-interno{
+    width:54rem;
+    height: 41rem;
+    background-color: #252525;
+    border-radius: 1rem;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 7.6rem;
+}
+
+#ajustar-altura-deck {
+    margin-top: auto;
+    color: white;
+}
+
+#ajustar-altura-deck :hover{
+    cursor: url(src/assets/cursor/Hand2.png), auto;
+    box-shadow: 0rem 0rem 0rem 0.4rem rgb(255, 99, 88);
+    border-radius: 0.7rem;
+}
+
+.cartas-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas */
+    grid-template-rows: repeat(2, auto);   /* 2 linhas */
+    gap: 1rem;
+    justify-items: center;
+    align-items: center;
+    padding: 3rem;
+    transition: box-shadow 2s ease;
+    perspective: 1000px;
+}
+
+.cartas-links img {
+    width: 9.5rem;
+    height: 14rem;
+    margin: 0.5rem;
+}
+
+.cartas-links img:hover {
+    filter: drop-shadow(0 0 1.5rem rgba(1, 184, 190, 0.8));
+    cursor: url(src/assets/cursor/Hand2.png), auto; /* cursor aqui, direto na imagem */
+}
+
+#tela-links-carregada {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-height: 100vh;
+	background: white;
+	z-index: 1001;
+	overflow-y: auto;
+	padding: 2rem;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	box-sizing: border-box;
+}
+
+/* Estilo interno do conteúdo carregado */
+#tela-links-carregada .container-pagina {
+	width: 100%;
+	max-width: 1000px;
+}
+
+ /* Overlay 100% preto */
+ #overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 1); /* 100% preto */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 999; /* Fica acima de todos os outros elementos */
+}
+
+#ajustar-numero {
+    margin-left: 6rem;
+}
+
+@keyframes flutuar {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-8px) rotate(1deg);
+    }
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+.carta-interativa {
+    animation: flutuar 3s ease-in-out infinite;
+    transition: transform 0.3s ease;
+    will-change: transform;
+}
+
+.destaque {
+    color: #db8c15;
+}
+
+.container {
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    gap: 5rem;
+    transform: scale(0.9); /* diminui para 80% */
+    transform-origin: top center; /* fixa o topo no lugar */
+    -webkit-transform-origin-x: 0;
+}  
+
+#popup {
+    position: absolute;
+    padding: 0.5rem 0.75rem; /* 8px 12px convertido para rem */
+    font-size: 0.875rem; /* 14px convertido para rem */
+    pointer-events: none; /* deixa o mouse passar por cima */
+    z-index: 1000;
+    display: none;
+    max-width: 50rem; /* 200px convertido para rem */
+    margin-left: 1.5rem; /* 1px convertido para rem */
+    backdrop-filter: none; /* Remove qualquer efeito de blur */
+}
+
+#popup p {
+    margin: 0;
+}
+
+#popup-conteudo {
+    background-color: #dfdfdf; /* cinza claro */
+    border: 0.125rem solid #880000; /* 2px convertido para rem */
+    border-radius: 0.5rem;
+    padding: 0.625rem 0.9375rem; /* 10px 15px convertido para rem */
+    color: #000;
+    font-size: 0.875rem; /* 14px convertido para rem */
+    justify-content: center;
+    white-space: nowrap;
+    backdrop-filter: none; /* Remove qualquer efeito de blur */
+}

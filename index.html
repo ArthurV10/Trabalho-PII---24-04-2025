@@ -2,7 +2,7 @@
 <html lang="pt-br">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<link rel="stylesheet" href="style.css" />
 		<link
 			rel="shortcut icon"
@@ -14,12 +14,12 @@
 	<body>
 		<!-- Vídeo de fundo -->
 		<video id="background-video" autoplay loop muted>
-			<source src="assets/background_balatro.mp4" type="video/mp4" />
+			<source src="src\assets\background\background_balatro.mp4" type="video/mp4" />
 			Seu navegador não suporta vídeos.
 		</video>
 
 		<header class="cabeçalho" id="cabeçalho_blog">
-			<img src="assets/logo.png" alt="blog ads">
+			<img src="src/assets/UI/logo.png" alt="blog ads">
 		</header>
 
 		<main id="principal">
@@ -90,6 +90,8 @@
 
 		<script>
 			function abrirTela(telaId) {
+				window.scrollTo(0, document.body.scrollHeight);
+				
 				const tela = document.getElementById('tela-' + telaId);
 				const botaoFechar = document.getElementById('fechar-' + telaId);
 				const tela_principal = document.getElementById('principal');
@@ -118,6 +120,7 @@
 				setTimeout(() => {
 					tela_principal.style.display = 'none';
 					cabeçalho_blog.style.display = 'none';
+					tela.classList.add("abrindo");
 				}, 400);
 
 				tela.addEventListener('animationend', function handleAnimAbrir() {
@@ -126,6 +129,33 @@
 				});
 			}
 
+			function handleAnim(tela) {
+				tela.style.display = 'none';
+				document.body.style.overflow = 'auto';
+				tela.scrollTop = 0; // reseta o scroll da tela
+				tela.classList.remove("abrindo"); // remove a animação
+				void tela.offsetWidth; // truque para forçar "reflow" no navegador
+
+				const tela_principal = document.getElementById('principal');
+				const cabeçalho_blog = document.getElementById('cabeçalho_blog');
+				const rodape_blog = document.getElementById('rodape');
+
+				tela_principal.style.display = 'flex'; // ou 'block', o que era no começo
+				cabeçalho_blog.style.display = 'block';
+				rodape_blog.style.display = 'block'; // se o rodapé também sumiu
+
+
+				// Reativa o botão após a animação
+				void tela_principal.offsetWidth;
+
+				tela_principal.style.opacity = '1';
+				cabeçalho_blog.style.opacity = '1';
+				rodape_blog.style.opacity = '1';
+				botaoFechar.disabled = false;
+
+				// Remove o event listener para não acumular vários
+				tela.removeEventListener('animationend', handleAnim);
+			}
 
 			// Função para fechar a tela sobreposta
 			function fecharTela(telaId) {
@@ -135,32 +165,17 @@
 				// Desativa o botão temporariamente
 				botaoFechar.disabled = true;
 				
-				tela.style.animation = 'descerTela 0.4s ease-out forwards';
-
-				tela.addEventListener('animationend', function handleAnim() {
-					tela.style.display = 'none';
-					document.body.style.overflow = 'auto';
-
-					const tela_principal = document.getElementById('principal');
-					const cabeçalho_blog = document.getElementById('cabeçalho_blog');
-					const rodape_blog = document.getElementById('rodape');
-
-					tela_principal.style.display = 'flex'; // ou 'block', o que era no começo
-					cabeçalho_blog.style.display = 'block';
-					rodape_blog.style.display = 'block'; // se o rodapé também sumiu
+				if (tela.id !== 'tela-postagens') {
+					tela.style.top = '50%';
+					tela.style.left = '50%';
+					tela.style.transform = 'translate(-50%, -50%)';
+					tela.style.animation = 'descerTela 0.4s ease-out forwards';		
+				} else {
+					handleAnim(tela);
+				}
 
 
-					// Reativa o botão após a animação
-					void tela_principal.offsetWidth;
-
-					tela_principal.style.opacity = '1';
-					cabeçalho_blog.style.opacity = '1';
-					rodape_blog.style.opacity = '1';
-					botaoFechar.disabled = false;
-
-					// Remove o event listener para não acumular vários
-					tela.removeEventListener('animationend', handleAnim);
-				});
+				tela.addEventListener('animationend', handleAnim(tela));
 			};
 
 
@@ -175,7 +190,7 @@
 				const conteudoAutores = document.getElementById('conteudo-autores');
 
 				// Carrega o conteúdo do arquivo autores.html
-				fetch('authors.html')
+				fetch('src/components/authors/authors.html')
 					.then(response => response.text())
 					.then(html => {
 						conteudoAutores.innerHTML = html;
@@ -192,15 +207,15 @@
 
 					// Após um breve delay para dar o efeito de transição
 					setTimeout(() => {
-						// Carrega a nova página "links-page.html"
-						window.location.href = "links-page.html";  // Isso carrega a página completa
+						// Carrega a nova página "links.html"
+						window.location.href = "src/components/links/links.html";  // Isso carrega a página completa
 					}, 500); // Espera meio segundo antes de redirecionar
 				});
 
 				document.querySelector('#botao_postagens').addEventListener('click', () => {
 					abrirTela('postagens');
 					const conteudoPostagens = document.getElementById('conteudo-postagens');
-				fetch('postagens-pages.html')
+				fetch('src/components/posts/posts.html')
 					.then(response => response.text())
 					.then(html => {
 						conteudoPostagens.innerHTML = html;
@@ -221,4 +236,4 @@
 		</div>
   
 	</body>
-</html>
+</html> 

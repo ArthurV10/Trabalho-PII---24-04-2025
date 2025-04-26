@@ -1,0 +1,178 @@
+.tela_autores {
+    display: none;
+}
+
+/* Estilos para a tela de autores no estilo Balatro */
+#tela-autores {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.container-cartas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px;
+    width: 90%;
+    max-width: 1000px;
+    margin: 30px auto;
+}
+
+.carta-autor {
+    position: relative;
+    width: 200px;
+    height: 300px;
+    background: url('carta.jpg') no-repeat center/cover;
+    border-radius: 15px;
+    overflow: hidden;
+    z-index: 1;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.5));
+}
+
+/* Brilho correndo */
+.carta-autor::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, yellow, transparent, yellow);
+    border-radius: 17px;
+    z-index: 2;
+    background-size: 400% 400%;
+    animation: border-glow 3s linear infinite;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  @keyframes border-glow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* Mostrar brilho ao passar o mouse */
+  .carta-autor:hover::before {
+    opacity: 1;
+  }
+
+.autor-1 {
+    background-image: url("https://arthurv10.github.io/Trabalho-PII---24-04-2025/src/assets/cards/jokerArthur.jpg");
+}
+
+.autor-2 {
+    background-image: url('https://arthurv10.github.io/Trabalho-PII---24-04-2025/src/assets/cards/jokerIglesio.png');
+}
+
+.autor-3 {
+    background-image: url('https://arthurv10.github.io/Trabalho-PII---24-04-2025/src/assets/cards/jokerNicolas.png');
+}
+
+.conteudo-carta {
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro transparente */
+    color: white;
+    width: 100%;
+    padding: 10px;
+    transform: translateY(100%); /* Começa fora da visão */
+    transition: transform 0.4s ease; /* Suaviza a animação */
+}
+
+.carta-autor:hover .conteudo-carta {
+    transform: translateY(0); /* Mostra as informações ao passar o mouse */
+}
+
+.foto-autor {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+    border-bottom: 2px solid #ffd700;
+}
+
+.nome-autor {
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    color: #ffd700;
+    font-size: 1.1em;
+}
+
+.info-autor {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.8);
+    color: rgb(255, 123, 0);
+    padding: 15px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.carta-autor:hover .info-autor {
+    transform: translateY(0);
+}
+
+.info-autor p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+.carta-autor .info-autor {
+    color: white;
+  }
+  
+.carta-autor .info-autor strong {
+    color: inherit; /* para manter a cor padrão ou */
+    color: #ff9900;  /* ou uma cor diferente, tipo amarelo ouro */
+}
+  
+
+.titulo-autores {
+    color: #ffd700;
+    font-size: 2.5em;
+    text-align: center;
+    margin-top: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.redes-sociais {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.icone-rede {
+    width: 32px;
+    height: 32px;
+    transition: all 0.2s ease;
+    filter: brightness(0.8);
+}
+
+.icone-rede:hover {
+    transform: scale(1.2);
+    filter: drop-shadow(0px 0px 2px #f0c246);
+}
+
+.icone-rede img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}

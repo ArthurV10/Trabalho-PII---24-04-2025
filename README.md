@@ -1,6 +1,6 @@
 # 🌟 Projeto PII — Blog ADS Estilo Balatro 🃏
 
-Bem-vindo ao **Blog ADS Balatro IFPI**, uma experiência lúdica em forma de site, desenvolvida para a disciplina de **Programação para Internet (PII)**. Como num baralho místico, cada carta — sejam postagens, autores ou links — revela segredos e curiosidades do IFPI, trazendo animações, vídeos e interatividade que evocam o espírito do jogo Balatro.
+Bem-vindo ao **Blog ADS Balatro IFPI**, uma experiência lúdica em forma de site, desenvolvida para a disciplina de **Programação para Internet (PII)**. Como num baralho místico, cada carta — sejam posts, authores ou links — revela segredos e curiosidades do IFPI, trazendo animações, vídeos e interatividade que evocam o espírito do jogo Balatro.
 
 ## 🌐 Acesso Online
 
@@ -15,14 +15,21 @@ Bem-vindo ao **Blog ADS Balatro IFPI**, uma experiência lúdica em forma de sit
 ## 🗂 Estrutura do Repositório
 
 ```bash
-Trabalho-PII---24-04-2025/
-├── assets/               # Vídeos, imagens e ícones temáticos
-├── fonts/                # Fonte 'Balatro' (OTF)
-├── index.html            # Landing page com vídeo de fundo e botão-carta
-├── authors.html          # Cards de Autores (Arthur, Iglésio, Nícolas)
-├── postagens-pages.html  # Seção de Postagens: exemplos de HTML e CSS
-├── links-page.html       # Cartas de Links externos com animações
-└── style.css             # Estilos globais, animações e responsividade
+├── src/
+│   ├── assets/              # Vídeos, imagens e ícones temáticos
+│   ├── components/
+│   │   ├── authors/
+│   │   │   ├── authors.html  # Página de authores (Arthur, Iglésio, Nícolas)
+│   │   │   └── authors.css   # Estilos específicos dos authores
+│   │   ├── links/
+│   │   │   ├── links.html    # Página de links externos interactives
+│   │   │   └── links.css     # Estilos específicos dos links
+│   │   └── post/
+│   │       ├── post.html    # Página de posts (exemplos de HTML e CSS)
+│   │       └── post.css     # Estilos específicos das posts
+├── index.html                # Landing page com vídeo de fundo e botão-carta
+├── README.md                  # Documentação do projeto
+└── style.css                 # Estilos globais, animações e responsividade
 ```
 
 ## ✨ Funcionalidades Principais
@@ -32,12 +39,12 @@ Trabalho-PII---24-04-2025/
 - Vídeo de fundo fullscreen para imersão total.
 - Botões estilizados como cartas que disparam animações de subida (`@keyframes`).
 
-### 2. Postagens
+### 2. post
 
 - Exibição de formulários, tabelas e listas exemplificando boas práticas de HTML5 e CSS3.
 - Navegação suave entre categorias de conteúdo.
 
-### 3. Autores
+### 3. authores
 
 - Grid responsivo de cartas, cada uma com foto de perfil.
 - Ao passar o mouse, informações deslizam para cima num efeito de hover, revelando e-mail, descrição e ícones de GitHub/LinkedIn.
@@ -46,7 +53,7 @@ Trabalho-PII---24-04-2025/
 
 - Cartas flutuantes que giram conforme a posição do cursor, evidenciando documentação e recursos úteis (HTML, CSS, frameworks).
 
-## 🤝 Créditos & Autores
+## 🤝 Créditos & authores
 
 - [Arthur Vieira](https://github.com/ArthurV10)
 - [Iglésio Júnior](https://github.com/iglesiojunior)

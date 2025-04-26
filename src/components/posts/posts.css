@@ -1,0 +1,415 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: fit-content;
+    overflow: hidden; /* bloqueia só horizontal, NÃO vertical */
+}
+
+.post-container {
+    margin-left: 24rem;
+    margin-top: 0;
+    padding: 2rem;
+    width: calc(100% - 25rem);
+    max-width: none;
+    flex-direction: column;
+    background: none;
+    position: fixed;
+    display: flex;
+    gap: 1.5rem;
+    color: white;
+    border-radius: 1rem;
+    overflow-y: auto; /* Permitir rolar aqui */
+    height: 100vh; /* Altura da tela inteira */
+    padding-top: 1rem;
+}
+
+.posts-header {
+    flex: 0 0 auto;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    color: #ffd700;
+}
+
+.post-container {
+    flex: 1 1 auto;
+    display: flex;
+    overflow-y: auto;
+    padding: 1rem;
+    gap: 2rem;
+}
+
+.posts-lista {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.posts-footer {
+    flex: 0 0 auto;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    text-align: center;
+}
+
+
+.sidebar-post {
+    position: fixed;
+    top: 20px;
+    left: 3rem;
+    width: 20rem;
+    height: calc(100vh - 45px);
+    background-color: #444444;
+    border: 0.3rem solid rgb(175, 61, 61);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1rem;
+    box-sizing: border-box;
+    overflow-y: auto;
+    z-index: 10;
+    filter: drop-shadow(0px 10px 10px rgb(255, 166, 0));
+}
+
+
+.sidebar-nav h3{
+    color: rgb(243, 186, 30);
+}
+
+.sidebar-nav a:hover {
+    filter: drop-shadow(0px 2px 2px rgb(255, 0, 0));
+    transform: translateX(5px);
+    cursor: url('https://arthurv10.github.io/Trabalho-PII---24-04-2025/src/assets/cursor/Hand2.png'), auto;
+}
+
+.sidebar-nav ul li {
+    margin-bottom: 5px; 
+}
+
+/* Estilos para os links não visitados */
+nav ul li a:link {
+    color: #3469db; /* Cor personalizada para links não visitados */
+    text-decoration: none; /* Remove o sublinhado */
+}
+
+/* Estilos para os links visitados */
+nav ul li a:visited {
+    color: #f17e49ad; /* Cor personalizada para links visitados */
+}
+
+.post {
+    transition: font-size 0.3s ease-in-out, color 0.3s ease-in-out, filter 0.3s ease-in-out;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 200vh;
+    margin-bottom: 2rem;
+    background-color: rgba(236, 202, 129, 0.95);
+    color: black;
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+}
+
+.post:first-child {
+    margin-top: 1rem;
+}
+
+.post h2 {
+    margin-top: 0;
+    color: #050505;
+    border-bottom: 1px solid #555;
+    padding-bottom: 0.5rem;
+}
+
+.post::-webkit-scrollbar {
+    width: 8px;
+}
+
+.post::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+.data-autor {
+    font-style: italic;
+    text-align: right;
+    margin-top: 1rem;
+    color: #555;
+}
+
+.post:hover{
+    filter: drop-shadow(0px 15px 15px rgb(0, 17, 255));
+}
+
+.post:hover .data-autor {
+    color: #62a86c;
+}
+
+/* Estilos para tabelas */
+.tabela1 {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.tabela1 th, .tabela1 td {
+    border: 1px solid #555;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+.tabela1 th {
+    background-color: #f2f2f2;
+}
+
+.tabela1 tr.total {
+    font-weight: bold;
+    background-color: #e6e6e6;
+}
+
+/* Estilos para formulários */
+form {
+    margin: 1rem 0;
+}
+
+label {
+    display: inline-block;
+    width: 100px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="color"],
+input[type="number"],
+input[type="range"],
+select {
+    margin-bottom: 0.5rem;
+    padding: 0.3rem;
+}
+
+/* Estilos para listas */
+ul, ol, dl {
+    margin: 1rem 0;
+    padding-left: 2rem;
+}
+
+dl dt {
+    font-weight: bold;
+    margin-top: 0.5rem;
+}
+
+dl dd {
+    margin-left: 1rem;
+}
+
+/* Estilos para imagens */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.post-box {
+    width: 17.4rem;
+    height: 15.5rem;
+    background-color: #3b3b3b00;
+    border: 0.5rem solid rgb(175, 61, 61);
+    border-radius: 1rem;
+    box-sizing: border-box;
+    display: flex;              /* ativa flexbox */
+    justify-content: center;    /* centraliza na horizontal */
+    align-items: center;        /* centraliza na vertical */
+    margin-top: 0rem;
+}
+
+.posts-image {
+    width: 70%;
+    height: 60%;
+    border-radius: 2.2rem;
+    transition: box-shadow 0.3s ease;
+}
+
+.verdana {
+    font-family: "Verdana", sans-serif;
+    font-size: 16px;
+    color: #333;
+}
+
+.monospace {
+    font-family: "Courier New", monospace;
+    font-size: 16px;
+    color: #555;
+    font-weight: bold; /* Efeito de negrito */
+}
+
+.calibri {
+    font-family: "Calibri", sans-serif;
+    font-size: 16px;
+    color: #444;
+    font-style: italic; /* Efeito em itálico */
+}
+
+.dancing {
+    font-family: "Dancing Script", cursive;
+    font-size: 20px;
+    color: #2c3e50;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Efeito de sombra */
+}
+
+.negrito {
+    font-weight: bold; /* Deixa o texto em negrito */
+    color: #000000;
+}
+
+/* Efeito de Itálico */
+.italico {
+    font-style: italic; /* Deixa o texto em itálico */
+    color: #7f8c8d;
+}
+
+/* Efeito de Sublinhado */
+.sublinhado {
+    text-decoration: underline; /* Sublinha o texto */
+    color: #2980b9;
+}
+
+/* Efeito de Tachado */
+.tachado {
+    text-decoration: line-through; /* Tachado no texto */
+    color: #e74c3c;
+}
+
+/* Estilo para o texto com cores */
+.vermelha {
+    color: red; /* Cor vermelha */
+}
+
+.azul {
+    color: blue; /* Cor azul */
+}
+
+.verde {
+    color: green; /* Cor verde */
+}
+
+.preta {
+    color: black; /* Cor preta */
+}
+
+.branca {
+    color: white; /* Cor branca */
+    background-color: black; /* Fundo preto para legibilidade */
+}
+
+.cinza-claro {
+    color: lightgray; /* Cor cinza claro */
+}
+
+.cinza-escuro {
+    color: darkgray; /* Cor cinza escuro */
+}
+
+.amarelo {
+    color: orange; /* Cor laranja (amarelo) */
+}
+
+.rosa {
+    color: pink; /* Cor rosa */
+}
+
+.justificado {
+    text-align: justify; /* Alinha o texto de forma justificada */
+    text-justify: inter-word; /* Ajusta o espaçamento entre palavras para justificação */
+    line-height: 1.6; /* Ajusta a altura da linha para melhor legibilidade */
+    margin-bottom: 20px; /* Espaço abaixo do parágrafo */
+}
+
+/* Alinhamento à Direita */
+.direita {
+    text-align: right; /* Alinha o texto à direita */
+    line-height: 1.6; /* Ajusta a altura da linha para melhor legibilidade */
+    margin-bottom: 20px; /* Espaço abaixo do parágrafo */
+}
+
+#fontes p {
+    transition: font-size 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+#fontes p:hover {
+    font-size: 18px; /* Aumenta o tamanho da fonte quando passa o mouse */
+    color: #0010f7; /* Muda a cor para vermelho */
+}
+
+
+#conteudo-postagens h2 {
+    color: rgba(240, 49, 49, 0.986);
+    filter: drop-shadow(2px 2px 4px rgb(255, 166, 0));
+}
+
+/* Responsividade */
+@media screen and (max-width: 1200px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .post-container {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .sidebar-post {
+        width: 15rem;
+        left: 1rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .post-container {
+        margin-left: 0;
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .sidebar-post {
+        width: 100%;
+        left: 0;
+        top: auto;
+        height: auto;
+    }
+
+    .posts-header {
+        padding: 0.5rem;
+    }
+
+    .post {
+        font-size: 14px; /* Ajusta o tamanho da fonte em telas menores */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .sidebar-post {
+        width: 100%;
+        left: 0;
+        top: auto;
+        height: auto;
+        margin-bottom: 2rem; /* Espaço abaixo */
+    }
+
+    .post-container {
+        width: 100%;
+        padding: 1rem;
+        margin-left: 0;
+    }
+
+    .post {
+        font-size: 12px; /* Ajusta o tamanho da fonte ainda mais */
+    }
+}
