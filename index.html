@@ -96,16 +96,18 @@
 				const cabeçalho_blog = document.getElementById('cabeçalho_blog');
 				const rodape_blog = document.getElementById('rodape');
 
-				// Desativa o botão de fechar durante a animação
 				if (botaoFechar) botaoFechar.disabled = true;
+				document.body.style.overflow = 'hidden';
 
-				// Mostra a tela e inicia a animação
 				tela.style.display = 'block';
-				if('tela-' + telaId != 'tela-postagens'){
+
+				// 🛠️ Resetar animação antiga antes de animar
+				tela.style.animation = 'none';
+				void tela.offsetWidth;
+				if (tela.id !== 'tela-postagens') {
 					tela.style.animation = 'subirTela 0.4s ease-out forwards';
 				}
 
-				// Oculta suavemente os elementos de fundo
 				tela_principal.style.transition = 'opacity 0.4s';
 				tela_principal.style.opacity = '0';
 				cabeçalho_blog.style.transition = 'opacity 0.4s';
@@ -116,17 +118,14 @@
 				setTimeout(() => {
 					tela_principal.style.display = 'none';
 					cabeçalho_blog.style.display = 'none';
-				}, 400); // tempo de transição do fundo
+				}, 400);
 
-				// Aguarda o término da animação de subida
 				tela.addEventListener('animationend', function handleAnimAbrir() {
-					// Reativa o botão de fechar após a animação
 					if (botaoFechar) botaoFechar.disabled = false;
-
-					// Remove o listener para evitar acúmulo
 					tela.removeEventListener('animationend', handleAnimAbrir);
 				});
 			}
+
 
 			// Função para fechar a tela sobreposta
 			function fecharTela(telaId) {
@@ -140,13 +139,16 @@
 
 				tela.addEventListener('animationend', function handleAnim() {
 					tela.style.display = 'none';
+					document.body.style.overflow = 'auto';
 
 					const tela_principal = document.getElementById('principal');
 					const cabeçalho_blog = document.getElementById('cabeçalho_blog');
 					const rodape_blog = document.getElementById('rodape');
 
-					tela_principal.style.display = 'flex';
+					tela_principal.style.display = 'flex'; // ou 'block', o que era no começo
 					cabeçalho_blog.style.display = 'block';
+					rodape_blog.style.display = 'block'; // se o rodapé também sumiu
+
 
 					// Reativa o botão após a animação
 					void tela_principal.offsetWidth;
@@ -160,6 +162,7 @@
 					tela.removeEventListener('animationend', handleAnim);
 				});
 			};
+
 
 
 			// Adiciona eventos para os botões

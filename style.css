@@ -30,6 +30,7 @@ body{
     font-family: 'Balatro', sans-serif;
     margin: auto;
     cursor: url('assets/Hand3.png'), auto;
+    overflow: auto;
 }
 
 main {
@@ -502,8 +503,6 @@ button, button *{
     margin-top: 3rem;
 }
 
-
-
 .links-image {
     width: 88%;
     height: 80%;
@@ -586,10 +585,7 @@ button, button *{
     width: 20rem;
     height: 43rem;
     background-color: #444444;
-    border-left: 0.3rem solid rgb(175, 61, 61);
-    border-right: 0.3rem solid rgb(175, 61, 61);
-    border-top: 0.3rem solid rgb(175, 61, 61);
-    border-bottom: 0.3rem solid rgb(175, 61, 61);
+    border: 0.3rem solid rgb(175, 61, 61);
     box-sizing: border-box;
     margin-left: 3rem;
     border-radius: 1rem;
