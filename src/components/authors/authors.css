@@ -176,3 +176,18 @@
     height: 100%;
     object-fit: contain;
 }
+
+@media screen and (max-width: 1080px) {
+    .carta-autor {
+        width: 100%;
+    }
+
+    .titulo-autores {
+        font-size: 2em;
+    }
+
+    .icone-rede {
+        width: 24px;
+        height: 24px;
+    }
+}
