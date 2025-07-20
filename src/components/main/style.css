@@ -22,13 +22,13 @@
 
 @font-face {
     font-family: 'Balatro'; /* Nome da fonte */
-    src: url('src/assets/fonts/balatro.otf') format('opentype'); /* Caminho para o arquivo .otf */
+    src: url('/src/assets/fonts/balatro.otf') format('opentype'); /* Caminho para o arquivo .otf */
 }
 
 body{
     font-family: 'Balatro', sans-serif;
     margin: auto;
-    cursor: url('src/assets/cursor/Hand3.png'), auto;
+    cursor: url('/src/assets/cursor/Hand3.png'), auto;
     overflow: auto;
     display: flex;
     flex-direction: column;
@@ -82,7 +82,7 @@ h1 {
 #bloco-titulo{
       width: 20rem; /* ajuste para o tamanho da sua imagem */
       height: 5rem; /* ajuste para o tamanho da sua imagem */
-      background-image: url('src/assets/UI/bloco-novo.png'); /* substitua pelo caminho certo */
+      background-image: url('/src/assets/UI/bloco-novo.png'); /* substitua pelo caminho certo */
       background-position: center;
       background-size: 100% 100%; /* estica a imagem proporcionalmente */
       background-repeat: no-repeat;
@@ -99,7 +99,7 @@ h1 {
     width: 200px;
     height: 80px;
     margin: 50px auto;
-    background-image: url('src/assets/UI/bloco-novo.png');
+    background-image: url('/src/assets/UI/bloco-novo.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
     display: flex;
@@ -112,7 +112,7 @@ h1 {
     border: none;
     background-color: transparent;
     border-radius: 1rem;
-    cursor: url('src/assets/cursor/Hand2.png'), auto;
+    cursor: url('/src/assets/cursor/Hand2.png'), auto;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -171,7 +171,7 @@ button:hover {
 }
 
 button, button *{
-    cursor: url('src/assets/cursor/Hand2.png'), auto;
+    cursor: url('/src/assets/cursor/Hand2.png'), auto;
 }
 
 .tela-sobreposta {
