@@ -16,20 +16,33 @@ Bem-vindo ao **Blog ADS Balatro IFPI**, uma experiência lúdica em forma de sit
 
 ```bash
 ├── src/
-│   ├── assets/              # Vídeos, imagens e ícones temáticos
-│   ├── components/
-│   │   ├── authors/
-│   │   │   ├── authors.html  # Página de authores (Arthur, Iglésio, Nícolas)
-│   │   │   └── authors.css   # Estilos específicos dos authores
-│   │   ├── links/
-│   │   │   ├── links.html    # Página de links externos interactives
-│   │   │   └── links.css     # Estilos específicos dos links
-│   │   └── post/
-│   │       ├── post.html    # Página de posts (exemplos de HTML e CSS)
-│   │       └── post.css     # Estilos específicos das posts
-├── index.html                # Landing page com vídeo de fundo e botão-carta
-├── README.md                  # Documentação do projeto
-└── style.css                 # Estilos globais, animações e responsividade
+│   ├── assets/
+│   │   ├── background/
+│   │   ├── cards/
+│   │   ├── cursor/
+│   │   ├── fonts/
+│   │   └── UI/
+│   └── components/
+│       ├── authors/
+│       │   ├── authors.css
+│       │   └── authors.html
+│       ├── insertPost/
+│       │   ├── insertPost.css
+│       │   └── insertPost.html
+│       ├── links/
+│       │   ├── links.css
+│       │   ├── links.html
+│       │   └── links.js
+│       ├── main/
+│       │   ├── main.js
+│       │   └── style.css
+│       └── posts/
+│           ├── posts.css
+│           ├── posts.html
+│           └── posts.js
+├── .gitignore
+├── index.html
+└── README.md
 ```
 
 ## ✨ Funcionalidades Principais
