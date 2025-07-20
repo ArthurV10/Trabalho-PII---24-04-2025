@@ -151,7 +151,6 @@
 				tela_principal.style.opacity = '1';
 				cabeçalho_blog.style.opacity = '1';
 				rodape_blog.style.opacity = '1';
-				botaoFechar.disabled = false;
 
 				// Remove o event listener para não acumular vários
 				tela.removeEventListener('animationend', handleAnim);
@@ -177,8 +176,6 @@
 
 				tela.addEventListener('animationend', handleAnim(tela));
 			};
-
-
 
 			// Adiciona eventos para os botões
 			document.querySelector('#botao_postagens').addEventListener('click', () => {
@@ -213,15 +210,135 @@
 				});
 
 				document.querySelector('#botao_postagens').addEventListener('click', () => {
+					console.debug('Botão de postagens clicado');
 					abrirTela('postagens');
 					const conteudoPostagens = document.getElementById('conteudo-postagens');
-				fetch('src/components/posts/posts.html')
-					.then(response => response.text())
-					.then(html => {
-						conteudoPostagens.innerHTML = html;
-					})
-					.catch(error => console.error('Erro ao carregar postagens:', error));
+
+					fetch('src/components/posts/posts.html')
+						.then(response => {
+							console.debug('Resposta recebida do fetch:', response);
+							return response.text();
+						})
+						.then(html => {
+							console.debug('HTML carregado:', html);
+							conteudoPostagens.innerHTML = html;
+
+							// Executa todos os scripts internos do HTML carregado
+							conteudoPostagens.querySelectorAll('script').forEach(oldScript => {
+								const newScript = document.createElement('script');
+								
+									if (oldScript.src) {
+										console.debug('Carregando script externo:', oldScript.src);
+										newScript.src = oldScript.src;
+									} else {
+										console.debug('Executando script embutido');
+										newScript.textContent = oldScript.textContent;
+									}
+
+									document.body.appendChild(newScript);
+									document.body.removeChild(newScript);
+							});
+						})
+						.catch(error => console.error('Erro ao carregar postagens:', error));
 				});
+				
+
+			document.querySelector('#botao_postagens').addEventListener('click', async() => {
+				abrirTela('postagens');
+				
+				await new Promise(resolve => setTimeout(resolve, 500));
+
+				const postContainer = document.querySelector('.post-container');
+
+				fetch('http://localhost:3000/api/posts')
+					.then(response => response.json())
+					.then(posts => {
+						postContainer.innerHTML = ''; // Limpa antes de adicionar
+
+						posts.forEach(post => {
+							// Monta o HTML para os comentários existentes
+							let comentariosHTML = '';
+							post.comentarios.forEach(comentario => {
+								comentariosHTML += `
+									<div class="comentario">
+										<strong>${comentario.autor}:</strong> ${comentario.texto}
+									</div>
+								`;
+							});
+
+							const postElement = document.createElement('div');
+							postElement.className = 'post';
+							postElement.id = post.id_secao;
+
+							// Template completo do post com a seção de comentários
+							postElement.innerHTML = `
+								<h2>${post.titulo}</h2>
+								${post.conteudoHTML}
+								<p class="data-autor">${post.data} - por ${post.autor}</p>
+								
+								<div class="comentarios">
+									<button class="toggle-comentarios">Mostrar Comentários</button>
+									<div class="area-comentarios" style="display: none;">
+										<div class="lista-comentarios">${comentariosHTML}</div>
+										<form class="form-comentario" data-postid="${post._id}">
+											<input type="text" class="input-autor-comentario" placeholder="Seu nome" required>
+											<input type="text" class="input-comentario" placeholder="Digite um comentário..." required>
+											<button type="submit">Comentar</button>
+										</form>
+									</div>
+								</div>
+							`;
+							postContainer.appendChild(postElement);
+
+							// --- Adiciona a lógica para CADA post ---
+
+							// Lógica para mostrar/ocultar comentários
+							const toggleBtn = postElement.querySelector('.toggle-comentarios');
+							const areaComentarios = postElement.querySelector('.area-comentarios');
+							toggleBtn.addEventListener('click', () => {
+								const isHidden = areaComentarios.style.display === 'none';
+								areaComentarios.style.display = isHidden ? 'block' : 'none';
+								toggleBtn.textContent = isHidden ? 'Ocultar Comentários' : 'Mostrar Comentários';
+							});
+
+							// Lógica para adicionar um novo comentário
+							const formComentario = postElement.querySelector('.form-comentario');
+							formComentario.addEventListener('submit', async function(e) {
+								e.preventDefault();
+								const postId = this.dataset.postid;
+								const autor = this.querySelector('.input-autor-comentario').value.trim();
+								const texto = this.querySelector('.input-comentario').value.trim();
+
+								if (autor && texto) {
+									try {
+										const response = await fetch(`http://localhost:3000/api/posts/${postId}/comments`, {
+											method: 'POST',
+											headers: { 'Content-Type': 'application/json' },
+											body: JSON.stringify({ autor, texto })
+										});
+										if (!response.ok) throw new Error('Falha ao enviar comentário');
+
+										// Adiciona o comentário visualmente na hora
+										const listaComentarios = this.previousElementSibling; // Pega a div .lista-comentarios
+										const comentarioDiv = document.createElement('div');
+										comentarioDiv.className = 'comentario';
+										comentarioDiv.innerHTML = `<strong>${autor}:</strong> ${texto}`;
+										listaComentarios.appendChild(comentarioDiv);
+										this.reset(); // Limpa o formulário
+
+									} catch (error) {
+										console.error("Erro ao comentar:", error);
+										alert("Não foi possível adicionar o comentário.");
+									}
+								}
+							});
+						});
+					})
+					.catch(error => {
+						console.error('Erro ao buscar posts:', error);
+						postContainer.innerHTML = `<p style="color:red;">Falha ao carregar posts.</p>`;
+					});
+			});
 
 		</script>
 		
@@ -236,4 +353,4 @@
 		</div>
   
 	</body>
-</html> 
+</html>

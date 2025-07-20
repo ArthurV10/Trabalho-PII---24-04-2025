@@ -1,337 +1,435 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="src/components/posts/posts.css">    
-</head>
-<body>
-  <div class="container">
-    <div class="sidebar-post">
-        <div class="post-box">
-            <img src="src/assets/UI/posts_logo.png" alt="Logo post" class="posts-image">
+    <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="src/components/posts/posts.css">    
+    </head>
+    <body>
+    <div class="container">
+        <div class="sidebar-post">
+            <div class="post-box">
+                <img src="src/assets/UI/posts_logo.png" alt="Logo post" class="posts-image">
+            </div>
+            
+            <nav class="sidebar-nav">
+                <h3>Navegação</h3>
+                <ul>
+                    <li><a href="#box-model">Box Model</a></li>
+                    <li><a href="#campos-modernos">Campos Modernos</a></li>
+                    <li><a href="#buscas">Formulários de Busca</a></li>
+                    <li><a href="#tabelas">Tabelas</a></li>
+                    <li><a href="#listas">Listas</a></li>
+                    <li><a href="#espacamentos">Espaçamentos</a></li>
+                    <li><a href="#fontes">Fontes</a></li>
+                    <li><a href="#cores">Cores</a></li>
+                    <li><a href="#simbolos">Símbolos</a></li>
+                    <li><a href="#ifpi">Sobre o IFPI</a></li>
+                    <li><a href="#primeira-postagem">Primeira Postagem</a></li>
+                </ul>
+            </nav>
+
+            <!-- NOVO BOTÃO INSERIR POST --     VER OQ COLOCAR AQUI COMO FUNÇÃO AO CLICAR --> 
+            <button id="btn-abrir-form-post" class="bloco-botão">Inserir Post</button>
+
+
+            <button id="fechar-postagens" class="bloco-botão" onclick="fecharTela('postagens')" style="flex-direction: column;">Fechar</button> 
         </div>
         
-        <nav class="sidebar-nav">
-            <h3>Navegação</h3>
-            <ul>
-                <li><a href="#box-model">Box Model</a></li>
-                <li><a href="#campos-modernos">Campos Modernos</a></li>
-                <li><a href="#buscas">Formulários de Busca</a></li>
-                <li><a href="#tabelas">Tabelas</a></li>
-                <li><a href="#listas">Listas</a></li>
-                <li><a href="#espacamentos">Espaçamentos</a></li>
-                <li><a href="#fontes">Fontes</a></li>
-                <li><a href="#cores">Cores</a></li>
-                <li><a href="#simbolos">Símbolos</a></li>
-                <li><a href="#ifpi">Sobre o IFPI</a></li>
-                <li><a href="#primeira-postagem">Primeira Postagem</a></li>
-            </ul>
-        </nav>
+        <div class="post-container">
+            <!-- Box Model -->
+            <div class="post" id="box-model">
+                <h2>Box model</h2>
+                <p class="preenchimento">Preenchimento</p>
+                <p class="bordas1">Bordas 1 </p>
+                <p class="bordas2">Bordas 2 </p>
+                <p class="margens">Margem interna e externa</p>
+                <p class="comprimento">comprimento</p>
+                <p class="data-autor">08/04/2025 - por Ely Miranda</p>
+            </div>
 
-        <button id="fechar-postagens" class="bloco-botão" onclick="fecharTela('postagens')" style="flex-direction: column;">Fechar</button> 
+            <!-- Campos Modernos -->
+            <div class="post" id="campos-modernos">
+                <h2>Campos modernos</h2>
+                <form>
+                    <label for="email">E-Mail:</label>
+                    <input id="email" name="email" type="email" required>
+                    <br>
+                    <label for="data">Data:</label>
+                    <input id="data" name="data" type="date" required>
+                    <br>
+                    <label for="cor">Cor:</label>
+                    <input id="cor" name="cor" type="color" required>
+                    <br>
+                    <label for="Idade">Idade:</label>
+                    <input id="idade" name="idade" type="number" min="0" max="130" required>
+                    <br>
+                    <label for="nota">Nota:</label>
+                    <input id="nota" name="nota" type="range" min="0" max="10" required value="5">
+                    <span id="nota-atual"></span>
+                    <br>
+                    <input type="submit" value="Enviar">
+                </form>
+                <script>
+                    function atualizaNota() {
+                        let nota = document.getElementById('nota').value;
+                        document.getElementById('nota-atual').innerText = nota;
+                    }
+                    document.getElementById('nota').addEventListener('change', atualizaNota);
+                    atualizaNota();
+                </script>
+                <p class="data-autor">08/04/2025 - por Ely Miranda</p>
+            </div>
+
+            <!-- Formulários de Busca -->
+            <div class="post" id="buscas">
+                <h2>Formulários de Busca</h2>
+                <p>Busca no google</p>
+                <form action="http://www.google.com/search" method="get">
+                    <input type=text placeholder="Digite sua pesquisa" name="q">
+                    <input type="submit" value="Pesquisar">
+                </form>
+
+                <p>Pesquisa no Mercado Livre</p>
+                <form action="https://www.mercadolivre.com.br/jm/search">
+                    <input type=text placeholder="Digite sua pesquisa" name="as_word">
+                    <input type="submit" value="Pesquisar">
+                </form>
+
+                <p>Pesquisa no Amazon</p>
+                <form action="https://www.amazon.com/s">
+                    <input type=text placeholder="Digite sua pesquisa" name="field-keywords">
+                    <select name="url">
+                        <option value="search-alias=toys">Brinquedos
+                        <option value="search-alias=dvd">Filmes
+                        <option value="search-alias=stripbooks-intl-ship">Livros
+                    </select>
+                    <input type="submit" value="Pesquisar">
+                </form>
+                <p class="data-autor">08/04/2025 - por Ely Miranda</p>
+            </div>
+
+            <!-- Tabelas -->
+            <div class="post" id="tabelas">
+                <h2>Tabelas</h2>
+                <p>Abaixo uma tabela 5 linhas e com as colunas numeração, produto, quantidade, e uma linha de totalização utilizando o atributo colspan</p>
+                <table class="tabela1">
+                    <tr>
+                        <th>Numeração</th>
+                        <th>Produto</th>
+                        <th>Quantidade</th>
+                        <th>Preço</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Arroz</td>
+                        <td>2kg</td>
+                        <td>R$ 10,00</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Feijão</td>
+                        <td>1kg</td>
+                        <td>R$ 5,00</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Macarrão</td>
+                        <td>500g</td>
+                        <td>R$ 3,00</td>
+                    </tr>
+                    <tr class="total">
+                        <td colspan="3">Total</td>
+                        <td>R$ 18,00</td>
+                    </tr>
+                </table>
+                <p>Abaixo uma tabela com colunas numeração, produto, quantidade e preço</p>
+                <table class="tabela1">
+                    <tr>
+                        <th>Numeração</th>
+                        <th>Produto</th>
+                        <th>Quantidade</th>
+                        <th>Preço</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Arroz</td>
+                        <td>2kg</td>
+                        <td>R$ 10,00</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Feijão</td>
+                        <td>1kg</td>
+                        <td>R$ 5,00</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Macarrão</td>
+                        <td>500g</td>
+                        <td>R$ 3,00</td>
+                    </tr>
+                </table>
+                <p class="data-autor">08/04/2025 - por Ely Miranda</p>
+            </div>
+
+            <!-- Listas -->
+            <div class="post" id="listas">
+                <h2>Listas</h2>
+                <p>Lista não ordenadas de compras</p>
+                <ul>
+                    <li>Arroz</li>
+                    <li>Feijão</li>
+                    <li>Macarrão</li>
+                    <li>Carne</li>
+                    <li>Frango</li>
+                </ul>
+
+                <p>Lista ordenada de prioridades</p>
+                <ol>
+                    <li>Estudar</li>
+                    <li>Trabalhar</li>
+                    <li>Descansar</li>
+                    <li>Comer</li>
+                    <li>Estudar mais</li>
+                </ol>
+
+                <p>Lista de compras com subitens</p>
+                <ul>
+                    <li>Arroz
+                        <ul>
+                            <li>Arroz integral</li>
+                            <li>Arroz parbolizado</li>
+                            <li>Arroz agulhinha</li>
+                        </ul>
+                    </li>
+                    <li>Feijão</li>
+                    <li>Macarrão
+                        <ul>
+                            <li>Espaguete</li>
+                            <li>Fusilli</li>
+                            <li>Parafuso</li>
+                        </ul>
+                    </li>
+                    <li>Carne
+                        <ul>
+                            <li>Carne de sol</li>
+                            <li>Carne moída</li>
+                            <li>Carne de porco</li>
+                        </ul>
+                    </li>
+                    <li>Frango
+                        <ul>
+                            <li>Peito de frango</li>
+                            <li>Sobrecoxa</li>
+                            <li>Asa de frango</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <p>Lista de definições de siglas de computação</p>
+                <dl>
+                    <dt>HTML</dt>
+                    <dd>Hyper Text Markup Language</dd>
+                    <dt>CSS</dt>
+                    <dd>Cascading Style Sheets</dd>
+                    <dt>JS</dt>
+                    <dd>JavaScript</dd>
+                    <dt>PHP</dt>
+                    <dd>Hypertext Preprocessor</dd>
+                </dl>
+
+                <p>Lista não ordenada usando imagens</p>
+                <ul>
+                    <li class="lista-seta1">item 1</li>
+                    <li class="lista-seta2">item 2</li>
+                    <li class="lista-seta1">item 3</li>
+                    <li class="lista-seta2">item 4</li>
+                </ul>
+                <p class="data-autor">08/04/2025 - por Ely Miranda</p>
+            </div>
+
+            <!-- Espaçamentos -->
+            <div class="post" id="espacamentos">
+                <h2>Alinhamentos</h2>
+                <p class="justificado">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt officia similique
+                    commodi
+                    tempore aliquid ipsum nesciunt placeat a. Dolore soluta nesciunt est amet! Maxime nisi illum harum
+                    perferendis dolores id. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt neque, ut
+                    distinctio
+                    vitae soluta incidunt accusantium possimus nesciunt perspiciatis alias optio esse dicta amet ipsum
+                    labore,
+                    rerum beatae iste? Iure!</p>
+                <p class="direita">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident dignissimos a minus
+                    tenetur pariatur itaque deserunt dolor! Eum ipsam nobis iusto quidem ducimus itaque? Error
+                    necessitatibus
+                    iste dolorem nisi asperiores.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt officia
+                    similique commodi tempore aliquid ipsum nesciunt placeat a. Dolore soluta nesciunt est amet! Maxime nisi
+                    illum harum perferendis dolores id.</p>
+                <p class="data-autor">08/04/2025 - por Ely Miranda</p>
+            </div>
+
+            <!-- Fontes -->
+            <div class="post" id="fontes">
+                <h2>Fontes</h2>
+                <p class="verdana">Lorem Ipsum - Verdana</p>
+                <p class="monospace">Lorem Ipsum - Monospace 123</p>
+                <p class="monospace">Lorem Ipsum - Monospace QQQ</p>
+                <p class="calibri">Lorem Ipsum - Calibri</p>
+                <p class="dancing">Lorem Ipsum - Dancing</p>
+                <p class="data-autor">08/04/2025 - por Ely Miranda</p>
+            </div>
+
+            <!-- Formatação de texto -->
+            <div class="post">
+                <h2>Negrito, itálico etc...</h2>
+                <p class="negrito">Negrito</p>
+                <p class="italico">Italico</p>
+                <p class="sublinhado">sublinhado</p>
+                <p class="tachado">Tachado</p>
+                <p class="data-autor">08/04/2025 - por Ely Miranda</p>
+            </div>
+
+            <!-- Cores -->
+            <div class="post" id="cores">
+                <h2>Estudando sobre cores</h2>
+                <p class="vermelha">Vermelha</p>
+                <p class="azul">Azul</p>
+                <p class="verde">Verde de novo em um h6</p>
+                <h6 class="verde">Verde</h6>
+                <p class="preta">Preta</p>
+                <p class="branca">Branca</p>
+                <p class="cinza-claro">Tom de cinza claro</p>
+                <p class="cinza-escuro">Tom de cinza escuro</p>
+                <p class="amarelo">Laranja</p>
+                <p class="rosa">Rosa</p>
+                <p class="data-autor">08/04/2025 - por Ely Miranda</p>
+            </div>
+
+            <!-- Símbolos -->
+            <div class="post" id="simbolos">
+                <h2>Aprendendo sobre símbolos e emojis</h2>
+                <p>A primeira tag de uma página é a tag é a &lt;html&gt;</p>
+                <p>Copyright: &copy;</p>
+                <p>Euro: &euro;</p>
+                <p>Iene japonês: &yen;</p>
+                <p>Ômega: &Omega;</p>
+                <p>Smiley: &#128516; &#128564;</p>
+                <p class="data-autor">08/04/2025 - por Ely Miranda</p>
+            </div>
+            
+            <!-- IFPI -->
+            <div class="post" id="ifpi">
+                <h2>Sobre o IFPI</h2>
+                <p>O Instituto Federal do Piauí é a nossa instuição de ensino</p>
+                <p>Seguem abaixo o link para a página e logo abaixo a sua logomarca:</p>
+                <p><a href="http://www.ifpi.edu.br">Página do IFPI</a></p>
+                <img src="https://www.ifpi.edu.br/topo_ifpi.png" alt="Logomarca do IFPI">
+                <p class="data-autor">08/04/2025 - por Ely Miranda</p>
+            </div>
+
+            <!-- Primeira postagem -->
+            <div class="post" id="primeira-postagem">
+                <h2>Minha primeira postagem</h2>
+                <p>Hello, world!</p>
+                <p class="data-autor">08/04/2025 - por Ely Miranda</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="overlay-inserir-post" class="overlay-post">
+      <div class="form-post-container">
+          <h2>Criar um Novo Post</h2>
+          <form id="form-novo-post">
+              <label for="post-usuario">Nome do Usuário:</label>
+              <input type="text" id="post-usuario" name="usuario" required>
+
+              <label for="post-titulo">Título do Post:</label>
+              <input type="text" id="post-titulo" name="titulo" required>
+
+              <label for="post-conteudo">Conteúdo:</label>
+              <textarea id="post-conteudo" name="conteudo" rows="6" required></textarea>
+
+              <div class="form-botoes">
+                  <button type="submit" class="bloco-botão">Postar</button>
+                  <button type="button" id="btn-cancelar-post" class="bloco-botão">Cancelar</button>
+              </div>
+          </form>
+      </div>
     </div>
     
-    <div class="post-container">
-        <!-- Box Model -->
-        <div class="post" id="box-model">
-            <h2>Box model</h2>
-            <p class="preenchimento">Preenchimento</p>
-            <p class="bordas1">Bordas 1 </p>
-            <p class="bordas2">Bordas 2 </p>
-            <p class="margens">Margem interna e externa</p>
-            <p class="comprimento">comprimento</p>
-            <p class="data-autor">08/04/2025 - por Ely Miranda</p>
-        </div>
+    <script>
 
-        <!-- Campos Modernos -->
-        <div class="post" id="campos-modernos">
-            <h2>Campos modernos</h2>
-            <form>
-                <label for="email">E-Mail:</label>
-                <input id="email" name="email" type="email" required>
-                <br>
-                <label for="data">Data:</label>
-                <input id="data" name="data" type="date" required>
-                <br>
-                <label for="cor">Cor:</label>
-                <input id="cor" name="cor" type="color" required>
-                <br>
-                <label for="Idade">Idade:</label>
-                <input id="idade" name="idade" type="number" min="0" max="130" required>
-                <br>
-                <label for="nota">Nota:</label>
-                <input id="nota" name="nota" type="range" min="0" max="10" required value="5">
-                <span id="nota-atual"></span>
-                <br>
-                <input type="submit" value="Enviar">
-            </form>
-            <script>
-                function atualizaNota() {
-                    let nota = document.getElementById('nota').value;
-                    document.getElementById('nota-atual').innerText = nota;
+        if (typeof window.postsScriptLoaded === 'undefined') {
+            window.postsScriptExecuted = true;  
+
+
+            const overlayInserirPost = document.getElementById('overlay-inserir-post');
+            const btnAbrirForm = document.getElementById('btn-abrir-form-post');
+            const btnCancelarPost = document.getElementById('btn-cancelar-post');
+            const formNovoPost = document.getElementById('form-novo-post');
+
+            // Abre a tela de inserir post
+            btnAbrirForm.addEventListener('click', () => {
+                overlayInserirPost.style.display = 'flex';
+            });
+
+            // Fecha a tela de inserir post
+            function fecharFormPost() {
+                overlayInserirPost.style.display = 'none';
+                formNovoPost.reset(); // Limpa o formulário
+            }
+
+            btnCancelarPost.addEventListener('click', fecharFormPost);
+
+            formNovoPost.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const autor = document.getElementById('post-usuario').value;
+                const titulo = document.getElementById('post-titulo').value;
+                const conteudo = document.getElementById('post-conteudo').value;
+                
+                // Gera uma ID a partir do título para o link de navegação
+                const id_secao = titulo.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+
+                const postParaSalvar = {
+                    id_secao: id_secao,
+                    titulo: titulo,
+                    // Adicionamos um parágrafo para manter a estrutura
+                    conteudoHTML: `<p>${conteudo.replace(/\n/g, '<br>')}</p>`,
+                    autor: autor
+                };
+
+                try {
+                    // 1. Envia o novo post para a API
+                    const response = await fetch('http://localhost:3000/api/posts', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(postParaSalvar),
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Falha ao criar o post. Status: ' + response.status);
+                    }
+
+                    // 2. Se deu tudo certo, avisa o usuário e fecha o formulário
+                    alert('Post criado com sucesso!');
+                    fecharFormPost();
+
+                    // 3. O "truque" final: simula um clique no botão de postagens
+                    // para recarregar a lista inteira, já com o novo post incluído!
+                    document.querySelector('#botao_postagens').click();
+
+                } catch (error) {
+                    console.error('Erro ao criar o post:', error);
+                    alert('Não foi possível criar o post. Verifique o console para mais detalhes.');
                 }
-                document.getElementById('nota').addEventListener('change', atualizaNota);
-                atualizaNota();
-            </script>
-            <p class="data-autor">08/04/2025 - por Ely Miranda</p>
-        </div>
-
-        <!-- Formulários de Busca -->
-        <div class="post" id="buscas">
-            <h2>Formulários de Busca</h2>
-            <p>Busca no google</p>
-            <form action="http://www.google.com/search" method="get">
-                <input type=text placeholder="Digite sua pesquisa" name="q">
-                <input type="submit" value="Pesquisar">
-            </form>
-
-            <p>Pesquisa no Mercado Livre</p>
-            <form action="https://www.mercadolivre.com.br/jm/search">
-                <input type=text placeholder="Digite sua pesquisa" name="as_word">
-                <input type="submit" value="Pesquisar">
-            </form>
-
-            <p>Pesquisa no Amazon</p>
-            <form action="https://www.amazon.com/s">
-                <input type=text placeholder="Digite sua pesquisa" name="field-keywords">
-                <select name="url">
-                    <option value="search-alias=toys">Brinquedos
-                    <option value="search-alias=dvd">Filmes
-                    <option value="search-alias=stripbooks-intl-ship">Livros
-                </select>
-                <input type="submit" value="Pesquisar">
-            </form>
-            <p class="data-autor">08/04/2025 - por Ely Miranda</p>
-        </div>
-
-        <!-- Tabelas -->
-        <div class="post" id="tabelas">
-            <h2>Tabelas</h2>
-            <p>Abaixo uma tabela 5 linhas e com as colunas numeração, produto, quantidade, e uma linha de totalização utilizando o atributo colspan</p>
-            <table class="tabela1">
-                <tr>
-                    <th>Numeração</th>
-                    <th>Produto</th>
-                    <th>Quantidade</th>
-                    <th>Preço</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Arroz</td>
-                    <td>2kg</td>
-                    <td>R$ 10,00</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Feijão</td>
-                    <td>1kg</td>
-                    <td>R$ 5,00</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Macarrão</td>
-                    <td>500g</td>
-                    <td>R$ 3,00</td>
-                </tr>
-                <tr class="total">
-                    <td colspan="3">Total</td>
-                    <td>R$ 18,00</td>
-                </tr>
-            </table>
-            <p>Abaixo uma tabela com colunas numeração, produto, quantidade e preço</p>
-            <table class="tabela1">
-                <tr>
-                    <th>Numeração</th>
-                    <th>Produto</th>
-                    <th>Quantidade</th>
-                    <th>Preço</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Arroz</td>
-                    <td>2kg</td>
-                    <td>R$ 10,00</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Feijão</td>
-                    <td>1kg</td>
-                    <td>R$ 5,00</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Macarrão</td>
-                    <td>500g</td>
-                    <td>R$ 3,00</td>
-                </tr>
-            </table>
-            <p class="data-autor">08/04/2025 - por Ely Miranda</p>
-        </div>
-
-        <!-- Listas -->
-        <div class="post" id="listas">
-            <h2>Listas</h2>
-            <p>Lista não ordenadas de compras</p>
-            <ul>
-                <li>Arroz</li>
-                <li>Feijão</li>
-                <li>Macarrão</li>
-                <li>Carne</li>
-                <li>Frango</li>
-            </ul>
-
-            <p>Lista ordenada de prioridades</p>
-            <ol>
-                <li>Estudar</li>
-                <li>Trabalhar</li>
-                <li>Descansar</li>
-                <li>Comer</li>
-                <li>Estudar mais</li>
-            </ol>
-
-            <p>Lista de compras com subitens</p>
-            <ul>
-                <li>Arroz
-                    <ul>
-                        <li>Arroz integral</li>
-                        <li>Arroz parbolizado</li>
-                        <li>Arroz agulhinha</li>
-                    </ul>
-                </li>
-                <li>Feijão</li>
-                <li>Macarrão
-                    <ul>
-                        <li>Espaguete</li>
-                        <li>Fusilli</li>
-                        <li>Parafuso</li>
-                    </ul>
-                </li>
-                <li>Carne
-                    <ul>
-                        <li>Carne de sol</li>
-                        <li>Carne moída</li>
-                        <li>Carne de porco</li>
-                    </ul>
-                </li>
-                <li>Frango
-                    <ul>
-                        <li>Peito de frango</li>
-                        <li>Sobrecoxa</li>
-                        <li>Asa de frango</li>
-                    </ul>
-                </li>
-            </ul>
-
-            <p>Lista de definições de siglas de computação</p>
-            <dl>
-                <dt>HTML</dt>
-                <dd>Hyper Text Markup Language</dd>
-                <dt>CSS</dt>
-                <dd>Cascading Style Sheets</dd>
-                <dt>JS</dt>
-                <dd>JavaScript</dd>
-                <dt>PHP</dt>
-                <dd>Hypertext Preprocessor</dd>
-            </dl>
-
-            <p>Lista não ordenada usando imagens</p>
-            <ul>
-                <li class="lista-seta1">item 1</li>
-                <li class="lista-seta2">item 2</li>
-                <li class="lista-seta1">item 3</li>
-                <li class="lista-seta2">item 4</li>
-            </ul>
-            <p class="data-autor">08/04/2025 - por Ely Miranda</p>
-        </div>
-
-        <!-- Espaçamentos -->
-        <div class="post" id="espacamentos">
-            <h2>Alinhamentos</h2>
-            <p class="justificado">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt officia similique
-                commodi
-                tempore aliquid ipsum nesciunt placeat a. Dolore soluta nesciunt est amet! Maxime nisi illum harum
-                perferendis dolores id. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt neque, ut
-                distinctio
-                vitae soluta incidunt accusantium possimus nesciunt perspiciatis alias optio esse dicta amet ipsum
-                labore,
-                rerum beatae iste? Iure!</p>
-            <p class="direita">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident dignissimos a minus
-                tenetur pariatur itaque deserunt dolor! Eum ipsam nobis iusto quidem ducimus itaque? Error
-                necessitatibus
-                iste dolorem nisi asperiores.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt officia
-                similique commodi tempore aliquid ipsum nesciunt placeat a. Dolore soluta nesciunt est amet! Maxime nisi
-                illum harum perferendis dolores id.</p>
-            <p class="data-autor">08/04/2025 - por Ely Miranda</p>
-        </div>
-
-        <!-- Fontes -->
-        <div class="post" id="fontes">
-            <h2>Fontes</h2>
-            <p class="verdana">Lorem Ipsum - Verdana</p>
-            <p class="monospace">Lorem Ipsum - Monospace 123</p>
-            <p class="monospace">Lorem Ipsum - Monospace QQQ</p>
-            <p class="calibri">Lorem Ipsum - Calibri</p>
-            <p class="dancing">Lorem Ipsum - Dancing</p>
-            <p class="data-autor">08/04/2025 - por Ely Miranda</p>
-        </div>
-
-        <!-- Formatação de texto -->
-        <div class="post">
-            <h2>Negrito, itálico etc...</h2>
-            <p class="negrito">Negrito</p>
-            <p class="italico">Italico</p>
-            <p class="sublinhado">sublinhado</p>
-            <p class="tachado">Tachado</p>
-            <p class="data-autor">08/04/2025 - por Ely Miranda</p>
-        </div>
-
-        <!-- Cores -->
-        <div class="post" id="cores">
-            <h2>Estudando sobre cores</h2>
-            <p class="vermelha">Vermelha</p>
-            <p class="azul">Azul</p>
-            <p class="verde">Verde de novo em um h6</p>
-            <h6 class="verde">Verde</h6>
-            <p class="preta">Preta</p>
-            <p class="branca">Branca</p>
-            <p class="cinza-claro">Tom de cinza claro</p>
-            <p class="cinza-escuro">Tom de cinza escuro</p>
-            <p class="amarelo">Laranja</p>
-            <p class="rosa">Rosa</p>
-            <p class="data-autor">08/04/2025 - por Ely Miranda</p>
-        </div>
-
-        <!-- Símbolos -->
-        <div class="post" id="simbolos">
-            <h2>Aprendendo sobre símbolos e emojis</h2>
-            <p>A primeira tag de uma página é a tag é a &lt;html&gt;</p>
-            <p>Copyright: &copy;</p>
-            <p>Euro: &euro;</p>
-            <p>Iene japonês: &yen;</p>
-            <p>Ômega: &Omega;</p>
-            <p>Smiley: &#128516; &#128564;</p>
-            <p class="data-autor">08/04/2025 - por Ely Miranda</p>
-        </div>
-        
-        <!-- IFPI -->
-        <div class="post" id="ifpi">
-            <h2>Sobre o IFPI</h2>
-            <p>O Instituto Federal do Piauí é a nossa instuição de ensino</p>
-            <p>Seguem abaixo o link para a página e logo abaixo a sua logomarca:</p>
-            <p><a href="http://www.ifpi.edu.br">Página do IFPI</a></p>
-            <img src="https://www.ifpi.edu.br/topo_ifpi.png" alt="Logomarca do IFPI">
-            <p class="data-autor">08/04/2025 - por Ely Miranda</p>
-        </div>
-
-        <!-- Primeira postagem -->
-        <div class="post" id="primeira-postagem">
-            <h2>Minha primeira postagem</h2>
-            <p>Hello, world!</p>
-            <p class="data-autor">08/04/2025 - por Ely Miranda</p>
-        </div>
-    </div>
-</div>
-</body>
-</html>
+            });
+        }
+    </script>
+    
+    </body>
+    </html>
