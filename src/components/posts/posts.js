@@ -47,7 +47,7 @@ function setupPostSection() {
             };
 
             try {
-                const response = await fetch('http://localhost:3000/api/posts', {
+                const response = await fetch('https://blogads-backend-production.up.railway.app/api/posts', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(postParaSalvar),
@@ -72,7 +72,7 @@ async function carregarPostsDaAPI() {
     if (!postContainer || !navList) return;
 
     try {
-        const response = await fetch('http://localhost:3000/api/posts');
+        const response = await fetch('https://blogads-backend-production.up.railway.app/api/posts');
         if (!response.ok) throw new Error('Falha ao buscar posts da API.');
         const posts = await response.json();
 
@@ -140,7 +140,7 @@ function adicionarEventListenersPosts() {
 
             if (autor && texto) {
                 try {
-                    const response = await fetch(`http://localhost:3000/api/posts/${postId}/comments`, {
+                    const response = await fetch(`https://blogads-backend-production.up.railway.app/api/posts/${postId}/comments`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ autor, texto })
