@@ -92,6 +92,13 @@ document.getElementById('botao_postagens').addEventListener('click', async () =>
         // Agora, apenas chamamos as funções que foram importadas do posts.js
         setupPostSection();
         carregarPostsDaAPI();
+        const filtroAutor = document.getElementById('filtro-autor');
+        if (filtroAutor) {
+            filtroAutor.addEventListener('change', function() {
+                carregarPostsDaAPI(this.value);
+            });
+            carregarAutoresNoFiltro();
+        }
 
     } catch (error) {
         console.error('Erro ao carregar postagens:', error);

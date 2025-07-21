@@ -65,19 +65,48 @@ function setupPostSection() {
     }
 }
 
-// Função para carregar os posts da API e exibi-los
-async function carregarPostsDaAPI() {
+// Função para buscar todos os autores únicos dos posts
+async function carregarAutoresNoFiltro() {
+    const filtroAutor = document.getElementById('filtro-autor');
+    if (!filtroAutor) return;
+
+    try {
+        const response = await fetch('https://blogads-backend-production.up.railway.app/api/posts');
+        if (!response.ok) throw new Error('Falha ao buscar posts para autores.');
+        const posts = await response.json();
+        // Extrai autores únicos e filtra valores vazios
+        const autoresUnicos = [...new Set(posts.map(post => post.autor || "Desconhecido"))];
+        console.log('Autores únicos:', autoresUnicos);
+        filtroAutor.innerHTML = `<option value="">Todos</option>` +
+            autoresUnicos.map(autor => `<option value="${autor}">${autor}</option>`).join('');
+    } catch (error) {
+        filtroAutor.innerHTML = `<option value="">Todos</option>`;
+    }
+}
+
+// Função para carregar os posts da API e exibi-los, agora aceita filtro
+async function carregarPostsDaAPI(autor = '') {
     const postContainer = document.querySelector('.post-container');
     const navList = document.querySelector('.sidebar-nav ul');
     if (!postContainer || !navList) return;
 
     try {
+        // Sempre busca todos os posts
         const response = await fetch('https://blogads-backend-production.up.railway.app/api/posts');
         if (!response.ok) throw new Error('Falha ao buscar posts da API.');
-        const posts = await response.json();
+        let posts = await response.json();
+
+        // Filtra no frontend
+        if (autor && autor !== "Todos") {
+            if (autor === "Desconhecido") {
+                posts = posts.filter(post => !post.autor);
+            } else {
+                posts = posts.filter(post => post.autor === autor);
+            }
+        }
 
         postContainer.innerHTML = '';
-        navList.innerHTML = ''; // Limpa a lista de navegação
+        navList.innerHTML = '';
 
         posts.forEach(post => {
             // Adiciona item na navegação
@@ -89,7 +118,10 @@ async function carregarPostsDaAPI() {
             let comentariosHTML = '';
             if (post.comentarios) {
                 post.comentarios.forEach(comentario => {
-                    comentariosHTML += `<div class="comentario"><strong>${comentario.autor}:</strong> ${comentario.texto}</div>`;
+                    comentariosHTML += `<div class="comentario">
+    <strong>${comentario.autor}:</strong> ${comentario.texto}
+    <span class="comentario-data">${comentario.data ? new Date(comentario.data).toLocaleDateString('pt-BR') : ''}</span>
+</div>`;
                 });
             }
             const postElement = document.createElement('div');
@@ -99,6 +131,8 @@ async function carregarPostsDaAPI() {
                 <h2>${post.titulo}</h2>
                 ${post.conteudoHTML}
                 <p class="data-autor">${post.data} - por ${post.autor}</p>
+                <button class="btn-like" data-postid="${post._id}">Curtir (<span class="like-count">${post.curtidas || 0}</span>)</button>
+                <button class="btn-delete" data-postid="${post._id}">Deletar</button>
                 <div class="comentarios">
                     <button class="toggle-comentarios">Mostrar Comentários</button>
                     <div class="area-comentarios" style="display: none;">
@@ -146,11 +180,13 @@ function adicionarEventListenersPosts() {
                         body: JSON.stringify({ autor, texto })
                     });
                     if (!response.ok) throw new Error('Falha ao enviar comentário');
+                    const novoComentario = await response.json(); // Recebe o comentário salvo do backend
 
                     const listaComentarios = this.previousElementSibling;
                     const comentarioDiv = document.createElement('div');
                     comentarioDiv.className = 'comentario';
-                    comentarioDiv.innerHTML = `<strong>${autor}:</strong> ${texto}`;
+                    comentarioDiv.innerHTML = `<strong>${novoComentario.autor}:</strong> ${novoComentario.texto}
+                <span class="comentario-data">${novoComentario.data ? new Date(novoComentario.data).toLocaleDateString('pt-BR') : ''}</span>`;
                     listaComentarios.appendChild(comentarioDiv);
                     this.reset();
                 } catch (error) {
@@ -160,4 +196,50 @@ function adicionarEventListenersPosts() {
             }
         });
     });
+
+    // MOVA ESTES BLOCOS PARA DENTRO DA FUNÇÃO!
+    document.querySelectorAll('.btn-like').forEach(btn => {
+        btn.addEventListener('click', async function() {
+            const postId = this.dataset.postid;
+            try {
+                const response = await fetch(`https://blogads-backend-production.up.railway.app/api/posts/${postId}/like`, {
+                    method: 'POST'
+                });
+                if (!response.ok) throw new Error('Erro ao curtir');
+                const data = await response.json();
+                this.querySelector('.like-count').textContent = data.curtidas;
+            } catch (error) {
+                alert('Erro ao curtir o post.');
+            }
+        });
+    });
+
+    document.querySelectorAll('.btn-delete').forEach(btn => {
+        btn.addEventListener('click', async function() {
+            const postId = this.dataset.postid;
+            if (confirm('Tem certeza que deseja deletar este post?')) {
+                try {
+                    const response = await fetch(`https://blogads-backend-production.up.railway.app/api/posts/${postId}`, {
+                        method: 'DELETE'
+                    });
+                    if (!response.ok) throw new Error('Erro ao deletar');
+                    alert('Post deletado com sucesso!');
+                    carregarPostsDaAPI();
+                } catch (error) {
+                    alert('Erro ao deletar o post.');
+                }
+            }
+        });
+    });
 }
+
+// Inicialização do filtro ao abrir a tela de posts
+document.addEventListener('DOMContentLoaded', () => {
+    const filtroAutor = document.getElementById('filtro-autor');
+    if (filtroAutor) {
+        filtroAutor.addEventListener('change', function() {
+            carregarPostsDaAPI(this.value);
+        });
+        carregarAutoresNoFiltro();
+    }
+});
