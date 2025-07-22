@@ -32,14 +32,6 @@
     color: #ffd700;
 }
 
-.post-container {
-    flex: 1 1 auto;
-    display: flex;
-    overflow-y: auto;
-    padding: 1rem;
-    gap: 2rem;
-}
-
 .posts-lista {
     flex: 1;
     display: flex;
@@ -72,6 +64,45 @@
     overflow-y: auto;
     z-index: 10;
     filter: drop-shadow(0px 10px 10px rgb(255, 166, 0));
+}
+
+/* Botões mais grossos e responsivos na sidebar */
+.sidebar-post .bloco-botão {
+    width: 90%;
+    min-width: 180px;
+    max-width: 95%;
+    height: 4.5rem;
+    min-height: 3.5rem;
+    font-size: 1.6rem;
+    margin: 1.2rem auto 0 auto;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+/* Ajuste para o seletor de autores na sidebar */
+.sidebar-post #filtro-autor {
+    width: 80%;
+    margin: 0.5rem 10%;
+    min-width: 120px;
+    max-width: 90%;
+    box-sizing: border-box;
+    padding: 0.5rem 0.8rem;
+    border-radius: 0.5rem;
+    font-size: 1.1rem;
+    cursor: url('../../assets/cursor/Hand2.png'), auto;
+}
+
+/* Ajuste para o container do seletor */
+.sidebar-post label[for="filtro-autor"] {
+    margin-left: 10%;
+    margin-right: 10%;
+    display: block;
+    color: #ffd700;
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
 }
 
 
@@ -356,15 +387,13 @@ img {
     .container {
         flex-direction: column;
     }
-
-    .post-container {
-        margin-left: 0;
-        width: 100%;
-    }
-
     .sidebar-post {
-        width: 15rem;
-        left: 1rem;
+        width: 100%;
+        left: 0;
+    }
+    .post-container {
+        width: 100%;
+        padding: 1rem;
     }
 }
 
@@ -385,6 +414,16 @@ img {
         top: auto;
         height: auto;
     }
+    .sidebar-post .bloco-botão {
+        width: 95%;
+        min-width: 120px;
+        height: 3rem;
+        font-size: 1rem;
+    }
+    .sidebar-post #filtro-autor {
+        width: 90%;
+        margin: 0.5rem 5%;
+    }
 
     .posts-header {
         padding: 0.5rem;
@@ -403,6 +442,16 @@ img {
         height: auto;
         margin-bottom: 2rem; /* Espaço abaixo */
     }
+    .sidebar-post .bloco-botão {
+        width: 98%;
+        min-width: 80px;
+        height: 2.5rem;
+        font-size: 0.9rem;
+    }
+    .sidebar-post #filtro-autor {
+        width: 98%;
+        margin: 0.5rem 1%;
+    }
 
     .post-container {
         width: 100%;
@@ -414,8 +463,6 @@ img {
         font-size: 12px; /* Ajusta o tamanho da fonte ainda mais */
     }
 }
-
-/* ... (seu CSS existente) ... */
 
 /* Estilos para a nova tela de sobreposição de post */
 .overlay-post {
@@ -589,3 +636,35 @@ img {
     color: #888;
     margin-left: 8px;
 }
+
+/* --- INÍCIO: AJUSTES NOS BOTÕES E SELETOR DA SIDEBAR --- */
+
+/* Ajusta os botões para serem mais grossos e responsivos na sidebar */
+.sidebar-post .bloco-botão {
+    width: 90%; /* Largura relativa à sidebar */
+    height: 4.5rem; /* Altura aumentada para um aspecto "grosso" */
+    font-size: 1.6rem; /* Tamanho da fonte ajustado */
+    margin: 1rem auto; /* Centraliza e adiciona espaço vertical */
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ajusta o seletor de autores para ter margens laterais */
+.sidebar-post #filtro-autor {
+    width: 80%; /* Reduz a largura para criar margens */
+    margin: 0.5rem auto; /* Centraliza o seletor horizontalmente */
+    display: block; /* Garante que o margin:auto funcione */
+    padding: 0.5rem;
+    font-size: 1.1rem;
+    border-radius: 0.5rem;
+}
+
+/* Ajusta o container do seletor para alinhar o texto */
+.sidebar-post div[style*="margin: 1rem 0;"] {
+    text-align: center; /* Centraliza o label "Filtrar por autor:" */
+}
+
+
+/* --- FIM: AJUSTES NOS BOTÕES E SELETOR DA SIDEBAR --- */

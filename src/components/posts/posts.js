@@ -1,10 +1,22 @@
+// Variáveis de escopo global para o modal de deleção
+let postIdParaDeletar = null;
+let overlayConfirmarDelete = null;
+let btnConfirmarDelete = null;
+let btnCancelarDelete = null;
+
 // Função principal para configurar os botões e formulários da seção de posts
 function setupPostSection() {
+    // --- Modal Inserir Post ---
     const overlayInserirPost = document.getElementById('overlay-inserir-post');
     const btnAbrirForm = document.getElementById('btn-abrir-form-post');
     const btnCancelarPost = document.getElementById('btn-cancelar-post');
     const formNovoPost = document.getElementById('form-novo-post');
     const btnFecharPostagens = document.getElementById('fechar-postagens');
+
+    // --- Modal Confirmar Delete ---
+    overlayConfirmarDelete = document.getElementById('overlay-confirmar-delete');
+    btnConfirmarDelete = document.getElementById('btn-confirmar-delete');
+    btnCancelarDelete = document.getElementById('btn-cancelar-delete');
 
     // O botão "Fechar" chama a função `fecharTela` que está no main.js
     if (btnFecharPostagens) {
@@ -29,6 +41,33 @@ function setupPostSection() {
     if (btnCancelarPost) {
         btnCancelarPost.addEventListener('click', fecharFormPost);
     }
+    
+    // Listeners para o modal de deleção
+    if (btnCancelarDelete) {
+        btnCancelarDelete.addEventListener('click', () => {
+            postIdParaDeletar = null;
+            if (overlayConfirmarDelete) overlayConfirmarDelete.style.display = 'none';
+        });
+    }
+
+    if (btnConfirmarDelete) {
+        btnConfirmarDelete.addEventListener('click', async () => {
+            if (!postIdParaDeletar) return;
+            try {
+                const response = await fetch(`https://blogads-backend-production.up.railway.app/api/posts/${postIdParaDeletar}`, {
+                    method: 'DELETE'
+                });
+                if (!response.ok) throw new Error('Erro ao deletar');
+                if (overlayConfirmarDelete) overlayConfirmarDelete.style.display = 'none';
+                postIdParaDeletar = null;
+                alert('Post deletado com sucesso!');
+                carregarPostsDaAPI();
+            } catch (error) {
+                alert('Erro ao deletar o post.');
+            }
+        });
+    }
+
 
     // Lógica para enviar o formulário de um novo post para a API
     if (formNovoPost) {
@@ -57,6 +96,7 @@ function setupPostSection() {
                 alert('Post criado com sucesso!');
                 fecharFormPost();
                 carregarPostsDaAPI(); // Recarrega os posts para mostrar o novo
+                carregarAutoresNoFiltro(); // Atualiza o seletor de autores
             } catch (error) {
                 console.error('Erro ao criar o post:', error);
                 alert('Não foi possível criar o post.');
@@ -215,26 +255,19 @@ function adicionarEventListenersPosts() {
     });
 
     document.querySelectorAll('.btn-delete').forEach(btn => {
-        btn.addEventListener('click', async function() {
-            const postId = this.dataset.postid;
-            if (confirm('Tem certeza que deseja deletar este post?')) {
-                try {
-                    const response = await fetch(`https://blogads-backend-production.up.railway.app/api/posts/${postId}`, {
-                        method: 'DELETE'
-                    });
-                    if (!response.ok) throw new Error('Erro ao deletar');
-                    alert('Post deletado com sucesso!');
-                    carregarPostsDaAPI();
-                } catch (error) {
-                    alert('Erro ao deletar o post.');
-                }
+        btn.addEventListener('click', function() {
+            postIdParaDeletar = this.dataset.postid;
+            if (overlayConfirmarDelete) {
+                overlayConfirmarDelete.style.display = 'flex';
             }
         });
     });
 }
 
-// Inicialização do filtro ao abrir a tela de posts
+// Inicialização do filtro e setup da seção ao abrir a tela de posts
 document.addEventListener('DOMContentLoaded', () => {
+    setupPostSection(); // GARANTE QUE A CONFIGURAÇÃO DOS MODAIS SEJA EXECUTADA
+
     const filtroAutor = document.getElementById('filtro-autor');
     if (filtroAutor) {
         filtroAutor.addEventListener('change', function() {
