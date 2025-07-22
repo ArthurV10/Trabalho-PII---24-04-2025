@@ -9,7 +9,7 @@
 .post-container {
     margin-left: 24rem;
     margin-top: 0;
-    padding: 2rem;
+    padding: 1rem;
     width: calc(100% - 25rem);
     max-width: none;
     flex-direction: column;
@@ -51,7 +51,7 @@
 .sidebar-post {
     position: fixed;
     top: 20px;
-    left: 3rem;
+    left: 2rem;
     width: 20rem;
     height: calc(100vh - 45px); /* Ocupa a altura da tela menos a margem */
     background-color: #444444;
@@ -62,9 +62,8 @@
     align-items: center;
     padding-top: 1rem;
     box-sizing: border-box;
-    /* REMOVA o 'overflow-y: auto;' daqui */
     z-index: 10;
-    filter: drop-shadow(0px 10px 10px rgb(255, 166, 0));
+    filter: drop-shadow(2px 3px 4px rgb(255, 166, 0));
 }
 
 /* Área de Navegação */
@@ -72,7 +71,7 @@
     width: 100%;
     flex-grow: 1; /* Faz esta área crescer e ocupar o espaço disponível */
     overflow-y: auto; /* Adiciona o scroll APENAS aqui */
-    padding: 0 1rem; /* Espaçamento lateral para a lista */
+    padding: 0 1.5rem; /* Espaçamento lateral para a lista */
 }
 
 /* Esconde a barra de rolagem padrão, mas mantém a funcionalidade */
@@ -147,15 +146,36 @@
     margin-bottom: 5px; 
 }
 
-/* Estilos para os links não visitados */
-nav ul li a:link {
-    color: #3469db; /* Cor personalizada para links não visitados */
-    text-decoration: none; /* Remove o sublinhado */
+/* Estilo base para os links da navegação (nav) */
+nav ul li a {
+    /* Define a cor padrão para links visitados e não visitados */
+    color: #d8c3a5; /* Um tom de pergaminho/bege claro */
+    text-decoration: none; /* Remove o sublinhado padrão */
+    font-weight: bold;
+    display: block; /* Faz com que toda a área do item seja clicável */
+    padding: 1px;
+    border-radius: 4px; /* Suaviza levemente as bordas */
+    
+    /* Adiciona uma transição suave para as mudanças de cor e sombra */
+    transition: all 0.2s ease-in-out;
 }
 
-/* Estilos para os links visitados */
-nav ul li a:visited {
-    color: #f17e49ad; /* Cor personalizada para links visitados */
+nav ul li a:hover {
+    color: #f3ba1e; /* Cor de ouro vibrante para destaque */
+    background-color: rgba(175, 61, 61, 0.15); /* Um "brilho" de fundo vermelho sutil */
+    text-shadow: 0 0 4px #f3ba1e; /* Efeito de brilho no texto */
+}
+
+nav ul li a:active {
+    color: #fff; /* O texto fica branco para máximo contraste */
+    background-color: #af3d3d; /* Fundo vermelho forte para indicar o clique */
+    transform: translateY(1px); /* Desloca o link levemente para baixo, dando feedback de clique */
+}
+
+nav ul li a:focus {
+    outline: 2px solid #f3ba1e; /* Adiciona uma borda de foco visível e temática */
+    outline-offset: 2px;
+    color: #f3ba1e; /* Mantém a cor de destaque */
 }
 
 .post {
@@ -291,7 +311,7 @@ img {
 .posts-image {
     width: 70%;
     height: 60%;
-    border-radius: 2.2rem;
+    border-radius: 1rem;
     transition: box-shadow 0.3s ease;
 }
 
@@ -667,8 +687,6 @@ img {
     margin-left: 8px;
 }
 
-/* --- INÍCIO: AJUSTES NOS BOTÕES E SELETOR DA SIDEBAR --- */
-
 /* Ajusta os botões para serem mais grossos e responsivos na sidebar */
 .sidebar-post .bloco-botão {
     width: 90%; /* Largura relativa à sidebar */
@@ -719,7 +737,7 @@ img {
 
 /* Seta personalizada para o seletor */
 .select-wrapper::after {
-    content: '▼'; /* Caractere de seta para baixo */
+    content: '▼'    ; /* Caractere de seta para baixo */
     position: absolute;
     top: 50%;
     right: 1rem;

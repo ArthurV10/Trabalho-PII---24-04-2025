@@ -116,7 +116,7 @@ async function carregarAutoresNoFiltro() {
         const posts = await response.json();
         // Extrai autores únicos e filtra valores vazios
         const autoresUnicos = [...new Set(posts.map(post => post.autor || "Desconhecido"))];
-        console.log('Autores únicos:', autoresUnicos);
+        
         filtroAutor.innerHTML = `<option value="">Todos</option>` +
             autoresUnicos.map(autor => `<option value="${autor}">${autor}</option>`).join('');
     } catch (error) {
@@ -131,7 +131,6 @@ async function carregarPostsDaAPI(autor = '') {
     if (!postContainer || !navList) return;
 
     try {
-        // Sempre busca todos os posts
         const response = await fetch('https://blogads-backend-production.up.railway.app/api/posts');
         if (!response.ok) throw new Error('Falha ao buscar posts da API.');
         let posts = await response.json();
@@ -145,16 +144,18 @@ async function carregarPostsDaAPI(autor = '') {
             }
         }
 
+        // *** ALTERAÇÃO AQUI ***
+        // Inverte a ordem da array para que os mais novos (últimos a serem adicionados) apareçam primeiro.
+        posts.reverse();
+
         postContainer.innerHTML = '';
         navList.innerHTML = '';
 
         posts.forEach(post => {
-            // Adiciona item na navegação
             const navItem = document.createElement('li');
             navItem.innerHTML = `<a href="#${post.id_secao}">${post.titulo}</a>`;
             navList.appendChild(navItem);
 
-            // Adiciona post no container
             let comentariosHTML = '';
             if (post.comentarios) {
                 post.comentarios.forEach(comentario => {
@@ -194,7 +195,7 @@ async function carregarPostsDaAPI(autor = '') {
     }
 }
 
-// Função para adicionar os eventos aos posts carregados dinamicamente (comentários)
+// Função para adicionar os eventos aos posts carregados dinamicamente
 function adicionarEventListenersPosts() {
     document.querySelectorAll('.toggle-comentarios').forEach(toggleBtn => {
         toggleBtn.addEventListener('click', () => {
@@ -220,7 +221,7 @@ function adicionarEventListenersPosts() {
                         body: JSON.stringify({ autor, texto })
                     });
                     if (!response.ok) throw new Error('Falha ao enviar comentário');
-                    const novoComentario = await response.json(); // Recebe o comentário salvo do backend
+                    const novoComentario = await response.json();
 
                     const listaComentarios = this.previousElementSibling;
                     const comentarioDiv = document.createElement('div');
@@ -237,7 +238,6 @@ function adicionarEventListenersPosts() {
         });
     });
 
-    // MOVA ESTES BLOCOS PARA DENTRO DA FUNÇÃO!
     document.querySelectorAll('.btn-like').forEach(btn => {
         btn.addEventListener('click', async function() {
             const postId = this.dataset.postid;
@@ -263,16 +263,3 @@ function adicionarEventListenersPosts() {
         });
     });
 }
-
-// Inicialização do filtro e setup da seção ao abrir a tela de posts
-document.addEventListener('DOMContentLoaded', () => {
-    setupPostSection(); // GARANTE QUE A CONFIGURAÇÃO DOS MODAIS SEJA EXECUTADA
-
-    const filtroAutor = document.getElementById('filtro-autor');
-    if (filtroAutor) {
-        filtroAutor.addEventListener('change', function() {
-            carregarPostsDaAPI(this.value);
-        });
-        carregarAutoresNoFiltro();
-    }
-});
