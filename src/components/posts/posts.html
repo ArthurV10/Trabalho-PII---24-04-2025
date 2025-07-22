@@ -19,12 +19,15 @@
                 </ul>
         </nav>
 
-        <div style="width:100%; margin: 1rem 0;">
-            <label for="filtro-autor" style="color: #ffd700;">Filtrar por autor:</label>
-            <select id="filtro-autor" style="width: 100%; padding: 0.5rem; border-radius: 0.5rem;">
-                <option value="">Todos</option>
-                <!-- Opções serão preenchidas via JS -->
-            </select>
+        <div style="width: 90%; margin: 1rem auto; text-align: center;"> <label for="filtro-autor" style="color: #ffd700; display: block; margin-bottom: 0.5rem;">
+                Filtrar por autor:
+            </label>
+            
+            <div class="select-wrapper">
+                <select id="filtro-autor">
+                    <option value="">Todos</option>
+                    </select>
+            </div>
         </div>
 
         <button id="btn-abrir-form-post" class="bloco-botão">Inserir Post</button>
@@ -45,7 +48,7 @@
           <label for="post-titulo">Título do Post:</label>
           <input type="text" id="post-titulo" name="titulo" required>
 
-          <label for="post-conteudo">Conteúdo (HTML permitido):</label>
+          <label for="post-conteudo">Conteúdo: </label>
           <textarea id="post-conteudo" name="conteudo" rows="6" required></textarea>
 
           <div class="form-botoes">

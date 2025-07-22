@@ -47,23 +47,47 @@
 }
 
 
+/* Sidebar principal */
 .sidebar-post {
     position: fixed;
     top: 20px;
     left: 3rem;
     width: 20rem;
-    height: calc(100vh - 45px);
+    height: calc(100vh - 45px); /* Ocupa a altura da tela menos a margem */
     background-color: #444444;
     border: 0.3rem solid rgb(175, 61, 61);
     border-radius: 1rem;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Organiza os filhos verticalmente */
     align-items: center;
     padding-top: 1rem;
     box-sizing: border-box;
-    overflow-y: auto;
+    /* REMOVA o 'overflow-y: auto;' daqui */
     z-index: 10;
     filter: drop-shadow(0px 10px 10px rgb(255, 166, 0));
+}
+
+/* Área de Navegação */
+.sidebar-nav {
+    width: 100%;
+    flex-grow: 1; /* Faz esta área crescer e ocupar o espaço disponível */
+    overflow-y: auto; /* Adiciona o scroll APENAS aqui */
+    padding: 0 1rem; /* Espaçamento lateral para a lista */
+}
+
+/* Esconde a barra de rolagem padrão, mas mantém a funcionalidade */
+.sidebar-nav::-webkit-scrollbar {
+    width: 10px;
+    padding: 100px;
+}
+.sidebar-nav::-webkit-scrollbar-thumb {
+    background-color: rgb(183, 9, 9);
+    padding: 100px;
+    border-radius: 10px;
+}
+.sidebar-nav::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(236, 202, 129, 0.95);
 }
 
 /* Botões mais grossos e responsivos na sidebar */
@@ -103,6 +127,8 @@
     color: #ffd700;
     font-size: 1.1rem;
     margin-bottom: 0.2rem;
+    width: 200px;
+    text-align: left;
 }
 
 
@@ -256,6 +282,10 @@ img {
     justify-content: center;    /* centraliza na horizontal */
     align-items: center;        /* centraliza na vertical */
     margin-top: 0rem;
+}
+
+.post-box:hover{
+    filter: drop-shadow(5px 10px 10px rgba(236, 202, 129, 0.95));
 }
 
 .posts-image {
@@ -661,10 +691,40 @@ img {
     border-radius: 0.5rem;
 }
 
-/* Ajusta o container do seletor para alinhar o texto */
-.sidebar-post div[style*="margin: 1rem 0;"] {
-    text-align: center; /* Centraliza o label "Filtrar por autor:" */
+/* Wrapper para o select (necessário para posicionar a seta) */
+.select-wrapper {
+    position: relative; /* Contexto para o posicionamento da seta */
+    width: 100%;
+
 }
 
+/* Estilo do seletor de autor */
+#filtro-autor {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #ffd700; /* Texto dourado */
+    background-color: #2c2c2c; /* Fundo escuro */
+    border: 2px solid rgb(175, 61, 61); /* Borda vermelha temática */
+    border-radius: 0.5rem;
+    cursor: url('../../assets/cursor/Hand2.png'), auto;
+    text-align: left;
 
-/* --- FIM: AJUSTES NOS BOTÕES E SELETOR DA SIDEBAR --- */
+    /* Remove a aparência padrão do navegador para usarmos a nossa seta */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* Seta personalizada para o seletor */
+.select-wrapper::after {
+    content: '▼'; /* Caractere de seta para baixo */
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    color: #ffd700;
+    pointer-events: none; /* Permite clicar no select através da seta */
+}
